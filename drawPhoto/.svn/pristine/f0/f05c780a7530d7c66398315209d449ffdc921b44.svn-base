@@ -1,0 +1,72 @@
+# coding=utf-8
+
+from flask import send_file
+import da.photoService.fenshiPlan as plan
+import os
+import sys
+import time
+from da.main import main
+from config import logger
+import ConfigParser
+
+cf = ConfigParser.ConfigParser()
+
+cf.read("data.conf")
+
+time_map = {}
+
+@main.route('/')
+def hello_world():
+    return 'Hello World!'
+
+
+@main.route('/fs_all')
+def get_all_fs():
+    plan.fs_all(8)
+    return 'success'
+
+
+@main.route('/fs_code/<code>')
+def get_fs_code(code):
+
+    index_code = cf.get("index", "code").split(",")
+    if (code in index_code):
+        logger.info("fs_code_%s指数分时图" % code)
+        plan.fs_secucode(code, 1)
+    else:
+        logger.info("fs_code_%s股票分时图" % code)
+        plan.fs_secucode(code, 2)
+    try:
+        statinfo = os.stat(sys.path[0] + "/da/static/img/" + "sh600017" + ".png")
+        modify_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(statinfo.st_mtime))
+        return modify_time
+        # return send_file(sys.path[0] + '/da/static/img/' + code + ".png", mimetype='image/png',
+        #                  cache_timeout=0)
+        #return str(map)
+        # return url_for('static', filename ='img/sh600000.png',_external = True)
+    except IOError as er:
+        logger.error(er)
+        return "请输入正确的编号"
+
+
+@main.route('/test')
+def get_test():
+    logger.info('测试进程')
+    return str(plan.cpuNameTest())
+
+
+# @main.route('/test2')
+# def get_test2():
+#     logger.info('测试数据')
+#     # plan.test_data()
+#     plan.cpuNameTest()
+#     print config.get_map_value().keys()
+#     # print type(config.get_map_value())
+#     r = pickle.dumps(config.get_map_value())
+#     # pickle.loads(r)
+#     a = {}
+#     a = pickle.loads(r)
+#     print a['sh600353']
+#     a['sh600353'].savefig(sys.path[0] + '/da/static/img/' + 'sh600353' + '.png')
+#     print type(a['sh600353'])
+#     return 'a'

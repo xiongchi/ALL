@@ -1,0 +1,29 @@
+# coding=utf-8
+from da import create_flask_app
+from config import logger
+import da.main.drawPhoto as dp
+app = create_flask_app('config')
+from apscheduler.schedulers.background import BackgroundScheduler
+sched = BackgroundScheduler()
+
+# from flask import Flask
+
+# app= Flask(__name__)
+
+if __name__ == '__main__':
+    # handler = logging.FileHandler('drawPhoto.log', encoding='UTF-8')
+    # handler.setLevel(logging.INFO)
+    # logging_format = logging.Formatter(
+    #     '%(asctime)s - %(levelname)s - %(filename)s - %(funcName)s - %(lineno)s - %(message)s')
+    # handler.setFormatter(logging_format)
+    # app.logger.addHandler(handler)
+    #
+    # ch = logging.StreamHandler()
+    # ch.setLevel(logging.DEBUG)
+    # ch.setFormatter(logging_format)
+    # app.logger.addHandler(ch)
+    #sched.add_job(dp.get_count_map,'cron',hour=0,minute=0,second=0)
+    sched.add_job(dp.get_count_map,'cron',second = "*/59")
+    sched.start()
+    logger.info('测试日志')
+    app.run('172.20.3.150',debug=True)

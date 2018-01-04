@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>注册界面</title>
+</head>
+<link href="/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="/css/assets/css/ct-paper.css" rel="stylesheet"/>
+<link href="/css/assets/css/demo.css" rel="stylesheet"/>
+<link href="/css/assets/css/examples.css" rel="stylesheet"/>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
+            <div class="register-card" style="background-color: #b9def0;">
+                <form method="post" class="register-form">
+                    <!--<form method="post" class="register-form" onsubmit="return register()">-->
+                    <label>用户名</label>
+                    <label id="name_remind" style="margin-left: 40%;font-size: small;color: #ac2925"></label>
+                    <input id="user_name" name="userName" type="text" class="form-control" placeholder="请输入用户名"/>
+                    <label>密码</label>
+                    <input id="user_pwd" name="userPwd" type="password" class="form-control" placeholder="请输入密码"/>
+                    <label>重复密码</label>
+                    <label id="pwd_remind" style="margin-left: 40%;font-size: small;color: #ac2925"></label>
+                    <input id="check_pwd" name="checkPwd" type="password" placeholder="重复密码" class="form-control"/>
+                    <label>身份</label><br/>
+                    <input type="radio" name="optionsRadios" data-toggle="radio" id="optionsRadios1" value="0" checked="ture"/>
+                    <i></i>用户
+                    <input type="radio" name="optionsRadios" data-toggle="radio" id="optionsRadios2" value="1"/>
+                    <i></i>快递员
+
+                    <input id="user_sub" type="button" onclick="register()" value="注册" class="btn btn-danger btn-block"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(
+        //验证用户名
+        $("#user_name").change(
+            function checkUserName() {
+                $.ajax(
+                    {
+                        url: "/blog/userCheck?userName=" + this.value,
+                        type: "GET",
+                        success: function (data) {
+                            if (data.code == 1) {
+                                $("#name_remind").html("用户名已存在");
+                                $("#user_sub").attr('disabled', true);
+                            } else if (data.code == 0) {
+                                $("#name_remind").html("");
+                                $("#user_sub").attr('disabled', false);
+                            }
+                        }
+                    }
+                );
+            }
+        )
+    )
+
+    $(document).ready(
+        $("#check_pwd").change(
+        function checkPwd() {
+            var user_pwd = $("#user_pwd").val();
+            if (user_pwd == this.value) {
+                $("#pwd_remind").html("");
+                $("#user_sub").attr('disabled', false);
+            } else {
+                $("#pwd_remind").html("两次密码不一致");
+                $("#user_sub").attr('disabled', true);
+            }
+        }
+    ))
+
+</script>
+
+<script type="text/javascript">
+    function register() {
+        var user_name = $("#user_name").val();
+        var user_pwd = $("#user_pwd").val();
+        var check_pwd = $("#check_pwd").val();
+        var user_idty = $("input[type='radio']:checked").val();
+        $.ajax(
+            {
+                url: "/register",
+                type: "POST",
+                data: {
+                    userName: user_name,
+                    userPwd: user_pwd,
+                    checkPwd: check_pwd,
+                    userIdty: user_idty
+                },
+                cache:false,
+                dataType: "json",
+                success :function (data) {
+                    if (data.code == 0) {
+                        $("#name_remind").html(data.msg);
+                    } else if (data.code == 1) {
+                        location.href = "/enterComments";
+                    }
+                }
+            }
+        );
+
+    }
+
+</script>
+</html>

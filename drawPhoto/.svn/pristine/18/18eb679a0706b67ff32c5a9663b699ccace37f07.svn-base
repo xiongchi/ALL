@@ -1,0 +1,28 @@
+修改代码：
+1、drawPhoto.py 文件 方法  png_enhance()
+    压缩文件命令Windows和linux 不同 部署需修改成linux 命令如下
+#cmd = sys.path[0] + "/da/static/lib/pngquant.exe --force --speed=3 " + enhance_path + " -o " + enhance_path;
+cmd = "pngquant --force --speed=3 " + enhance_path + " -o " + enhance_path;
+注：epsPng.py 、codeincsv.py和changesize.py 三个文件修改方法类似
+
+2、epsPng.py文件 方法eps_to_png() eps转png 命令Windows和linux 不同 部署需修改成linux 命令如下
+#os.system(sys.path[
+#                 0] + "/da/static/lib/gswin64c -dBATCH -dNOPAUSE -dEPSCrop -r140 -sDEVICE=png256 "
+#                     "-dGraphicsAlphaBits=4 -dTextAlphaBits=4 -sOutputFile=" + img_path + " " + eps_path)
+# linux
+os.system(
+     "gs -dBATCH -dNOPAUSE -dEPSCrop -r140 -sDEVICE=png256 -dGraphicsAlphaBits=4 -dTextAlphaBits=4 -sOutputFile=" + img_path + " " + eps_path)
+
+3、run.py
+   batch 批量画图需要打开 三个任务
+    sched.add_job(task.hy_task, 'cron', max_instances=10,id='hy_task', day_of_week='0-6', hour='9-11,13-15', minute='*/3')
+    sched.add_job(task.chy_task, 'cron', max_instances=3,id='chy_task', day_of_week='0-6', hour='9-11,13-15', minute='*/6')
+    sched.add_job(task.bhy_task, 'cron',max_instances=3, id='bhy_task', day_of_week='0-6', hour='9-11,13-15', minute='*/10')
+   web 访问端 需要打开 两个任务
+    sched.add_job(dp.get_count_map, 'cron', id='count_task', day_of_week='0-6', hour=23, minute=0, second=0)
+    csv.code_in_csv()
+    sched.add_job(csv.code_in_csv, 'cron', id='code_task', day_of_week='0-6', hour=9, minute=0, second=0)
+
+4、修改count目录下面的文件夹名称为当天的前一天
+
+5、删除lib目录下所有包

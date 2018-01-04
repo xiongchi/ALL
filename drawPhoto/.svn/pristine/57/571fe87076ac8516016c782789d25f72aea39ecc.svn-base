@@ -1,0 +1,22 @@
+# coding=utf-8
+# config.py
+import logging
+import logging.config
+
+config = {"key1": "value1"}
+
+logging.config.fileConfig("logger.conf")
+logger = logging.getLogger("cse")
+
+
+# 存放全局变量
+class GlobalVar:
+    map = {}
+
+
+def set_map_value(mapV):
+    GlobalVar.map = mapV
+
+
+def get_map_value():
+    return GlobalVar.map

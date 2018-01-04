@@ -1,0 +1,41 @@
+# coding=utf-8
+from flask import send_file
+import da.photoService.fenshiPlan as plan
+import sys
+from da.main import main
+
+
+from config import logger
+
+
+@main.route('/')
+def hello_world():
+    return 'Hello World!'
+
+
+@main.route('/fs_all')
+def get_all_fs():
+    plan.fs_all(8)
+    return 'success'
+
+
+@main.route('/fs_code/<code>')
+def get_fs_code(code):
+    logger.info("fs_code_%s分时图" % code)
+    plan.fs_secucode(code)
+    try:
+        return send_file(sys.path[0] + '/da/static/img/' + code + ".png", mimetype='image/png',
+                         cache_timeout=0)
+    except IOError as er:
+        logger.error(er)
+        return "请输入正确的编号"
+
+
+@main.route('/test')
+def get_test():
+    logger.info('测试进程')
+    return str(plan.cpuNameTest())
+
+
+
+

@@ -1,0 +1,2 @@
+vi /etc/sysconfig/iptables   编辑防火墙中对应的端口
+service iptables restart     重启防火墙

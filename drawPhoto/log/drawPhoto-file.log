@@ -1,0 +1,16 @@
+2017-12-06 14:50:12,989 run.py[line:13] MainProcess INFO 4824 测试日志
+2017-12-26 17:28:16,187 run.py[line:15] MainProcess INFO 10152 测试日志
+2017-12-26 17:29:07,122 run.py[line:15] MainProcess INFO 5732 测试日志
+2017-12-26 17:29:43,076 run.py[line:15] MainProcess INFO 1688 测试日志
+2017-12-26 17:30:18,703 fenshiPlan.py[line:267] MainProcess INFO 1688 sz000001图片大小尺寸为36.0(582, 260)
+2017-12-27 09:48:46,415 run.py[line:15] MainProcess INFO 11768 测试日志
+2017-12-28 10:18:55,588 run.py[line:15] MainProcess INFO 60240 测试日志
+2017-12-28 10:19:11,094 fenshiPlan.py[line:272] MainProcess INFO 60240 sz000001图片大小尺寸为30.0(582, 260)
+2017-12-28 10:41:14,907 run.py[line:15] MainProcess INFO 52296 测试日志
+2017-12-28 10:42:21,489 run.py[line:15] MainProcess INFO 53880 测试日志
+2017-12-28 10:43:28,980 run.py[line:15] MainProcess INFO 44108 测试日志
+2017-12-28 11:42:02,453 fenshiPlan.py[line:273] MainProcess INFO 44108 sz000001图片大小尺寸为34.0(582, 260)
+2017-12-28 14:14:27,479 fenshiPlan.py[line:273] MainProcess INFO 44108 sz000001图片大小尺寸为38.0(582, 260)
+2017-12-28 14:21:47,138 run.py[line:15] MainProcess INFO 14792 测试日志
+2017-12-28 16:13:04,395 run.py[line:15] MainProcess INFO 56168 测试日志
+2017-12-28 16:13:18,118 fenshiPlan.py[line:260] MainProcess INFO 56168 sz000001图片大小尺寸为41.0(583, 260)

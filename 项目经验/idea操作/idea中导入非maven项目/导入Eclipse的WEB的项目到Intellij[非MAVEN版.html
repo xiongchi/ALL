@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)https://www.jianshu.com/p/1d28ff7d709c -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=https://www.jianshu.com/p/1d28ff7d709c">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="首先，来点干货就是如何把我们之前在Eclipse环境开发的项目，如何导入到Intellij IDE中，并且让其可以正常运行成功呢？我们举例的是祥云19期[白班]完成的精简版的RBAC项目，因为我已经有点厌倦了录制视频的的感觉，自己对着电脑录制的时候，很空洞，也感觉到了无趣，还是简单谢谢写写东西，让自己不再忘记，讨厌现在的感觉！你可以把你之前随意的用Eclipse开发的项目进行测试，而胖先生在...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=https://www.jianshu.com/p/1d28ff7d709c">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/7927040">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="011.导入Eclipse的WEB的项目到Intellij[非MAVEN版]" property="twitter:title">
+  <meta content="首先，来点干货就是如何把我们之前在Eclipse环境开发的项目，如何导入到Intellij IDE中，并且让其可以正常运行成功呢？我们举例的是祥云19期[白班]完成的精简版的RBAC项目，因为我已经有点厌倦了录制视频的的感觉，自己对着电脑录制的时候，很空洞，也感觉到了无趣，还是简单谢谢写写东西，让自己不再忘记，讨厌现在的感觉！你可以把你之前随意的用Eclipse开发的项目进行测试，而胖先生在这里说明一下，我是把其复制到我Intellij IDE的文件夹下，只是做测试使用，下面我们选择打开项目，操作如下： 在 IntelliJ IDEA 下是支持直接打开 Eclipse 项目的，无需导入。..." property="twitter:description">
+  <meta content="https://www.jianshu.com/p/1d28ff7d709c" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="011.导入Eclipse的WEB的项目到Intellij[非MAVEN版]">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.jianshu.com/p/1d28ff7d709c">
+  <meta property="og:description" content="首先，来点干货就是如何把我们之前在Eclipse环境开发的项目，如何导入到Intellij IDE中，并且让其可以正常运行成功呢？我们举例的是祥云19期[白班]完成的精简版的RBAC项目，因为我...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/7927040">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/7927040">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>011.导入Eclipse的WEB的项目到Intellij[非MAVEN版] - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="IZbc/XdlwTK+5qQUJBYsk/btrqkBiUQWAR9Pk3R+5Hff+ro3zmtIRnkOpy7ZAXgmBXmejqLT5+8T8f8JuFVrwA==">
+
+  <link rel="stylesheet" media="all" href="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/web-9a426ac97f34593e6662.css">
+  
+  <link rel="stylesheet" media="all" href="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/entry-a5d96d4884b6cddc11f7.css">
+
+  <link href="https://cdn2.jianshu.io/assets/favicons/favicon-03411b154a430b85d807b4366489c21122fb983a38f3d7ca926f882e6367b13e.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="https://cdn2.jianshu.io/assets/apple-touch-icons/57-a6f1f1ee62ace44f6dc2f6a08575abd3c3b163288881c78dd8d75247682a4b27.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="https://cdn2.jianshu.io/assets/apple-touch-icons/72-fb9834bcfce738fd7b9c5e31363e79443e09a81a8e931170b58bc815387c1562.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="https://cdn2.jianshu.io/assets/apple-touch-icons/76-49d88e539ff2489475d603994988d871219141ecaa0b1a7a9a1914f4fe3182d6.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="https://cdn2.jianshu.io/assets/apple-touch-icons/114-24252fe693524ed3a9d0905e49bff3cbd0228f25a320aa09053c2ebb4955de97.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="https://cdn2.jianshu.io/assets/apple-touch-icons/120-1bb7371f5e87f93ce780a5f1a05ff1b176828ee0d1d130e768575918a2e05834.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="https://cdn2.jianshu.io/assets/apple-touch-icons/152-bf209460fc1c17bfd3e2b84c8e758bc11ca3e570fd411c3bbd84149b97453b99.png" sizes="152x152">
+
+  <!-- Start of 访问统计 -->
+    <script src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/push.js.下载"></script><script src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/hm.js.下载"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+  <!-- End of 访问统计 -->
+<style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.main {
+  position: relative;
+  margin: 0 auto;
+  padding: 0 0 30px 0;
+  width: 620px;
+}
+.main .title {
+    padding-left: 8px;
+    border-left: 3px solid #EA6F5A;
+    line-height: 1;
+    font-size: 15px;
+}
+.main .collection-settings {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    font-size: 13px;
+    color: #A0A0A0;
+}
+.main .collection-settings span {
+      padding-left: 4px;
+}
+.main .include-collection {
+    width: 100%;
+    padding-top: 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+.main .include-collection .item {
+      display: inline-block;
+      margin: 0 12px 12px 0;
+      min-height: 32px;
+      background-color: white;
+      border: 1px solid #DCDCDC;
+      border-radius: 4px;
+      vertical-align: top;
+      overflow: hidden;
+}
+.main .include-collection .item img {
+        width: 32px;
+        height: 32px;
+}
+.main .include-collection .item .name {
+        display: inline-block;
+        padding: 0 10px;
+        font-size: 14px;
+}
+.main .include-collection .add-collection-wrap {
+      margin: 0 12px 12px 0;
+}
+.main .include-collection .add-collection {
+      padding: 8px 12px;
+      font-size: 14px;
+      border: 1px solid #DCDCDC;
+      border-radius: 4px;
+}
+.main .include-collection .add-collection i {
+        margin-right: 4px;
+        color: #969696;
+}
+.main .recommend-note a {
+    position: relative;
+    margin: 20px 2px 0 0;
+    width: 200px;
+    height: 160px;
+    display: inline-block;
+}
+.main .recommend-note a:after {
+      content: "";
+      position: absolute;
+      width: 200px;
+      height: 160px;
+      border-radius: 0 0 4px 4px;
+      -webkit-box-shadow: inset 0px -80px 50px -22px rgba(0, 0, 0, 0.6);
+              box-shadow: inset 0px -80px 50px -22px rgba(0, 0, 0, 0.6);
+      top: 0;
+      left: 0;
+      z-index: 1;
+}
+.main .recommend-note .name {
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    right: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #ffffff;
+    z-index: 2;
+}
+.main .recommend-note .author {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 2;
+}
+.main .recommend-note .avatar {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+.main .recommend-note .avatar img {
+      border-radius: 50%;
+}
+.main .recommend-note .author-name {
+    font-size: 12px;
+    color: #ffffff;
+    display: inline-block;
+    vertical-align: -1px;
+}
+.main .show-more {
+    margin: 0 12px 12px 0;
+    font-size: 14px;
+    color: #A0A0A0;
+}
+</style><style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.pc-bind-phone-modal .modal-content, .pc-bind-phone-modal .modal-body {
+  overflow: visible;
+}
+.pc-bind-phone-modal .dropdown-menu {
+  max-height: 300px;
+  overflow: auto;
+}
+.pc-bind-phone-modal .dropdown-menu .tag {
+    background-color: #efefef;
+    color: #4A4A4A;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 25px;
+    font-size: 12px;
+}
+.reader-night-mode .pc-bind-phone-modal .dropdown-menu .tag {
+  background-color: #2F2F2F;
+  color: #999999;
+}
+</style><style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.tips-card-loading[data-v-f3bf5228], .tips-card[data-v-f3bf5228] {
+  width: 460px;
+  position: relative;
+  left: 0;
+  top: 0;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d9d9d9;
+}
+.tips-card-loading[data-v-f3bf5228] {
+  height: 200px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+.tips-card-loading div[data-v-f3bf5228] {
+    background-color: #EAEAEA;
+}
+.tips-card-loading .avatar[data-v-f3bf5228] {
+    width: 72px !important;
+    height: 72px !important;
+    border-radius: 50%;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+.tips-card-loading .name[data-v-f3bf5228] {
+    width: 120px;
+    height: 20px;
+    position: absolute;
+    left: 110px;
+    top: 31px;
+}
+.tips-card-loading .content[data-v-f3bf5228] {
+    position: absolute;
+    left: 110px;
+    top: 62px;
+    width: 238px;
+    height: 39.2px;
+    background-color: transparent;
+}
+.tips-card-loading .content .text[data-v-f3bf5228], .tips-card-loading .content .text-delay[data-v-f3bf5228] {
+      height: 14px;
+      position: absolute;
+      left: 0;
+      width: 100%;
+}
+.tips-card-loading .content .text[data-v-f3bf5228] {
+      top: 2px;
+      -webkit-animation: loading-data-v-f3bf5228 1s ease-in-out infinite;
+      animation: loading-data-v-f3bf5228 1s ease-in-out infinite;
+}
+.tips-card-loading .content .text-delay[data-v-f3bf5228] {
+      bottom: 3px;
+      -webkit-animation: loading-data-v-f3bf5228 1s ease-in-out -0.5s infinite;
+      animation: loading-data-v-f3bf5228 1s ease-in-out -0.5s infinite;
+}
+@keyframes loading-data-v-f3bf5228 {
+0% {
+    width: 60%;
+}
+50% {
+    width: 100%;
+}
+100% {
+    width: 60%;
+}
+}
+@-webkit-keyframes loading {
+0% {
+    width: 60%;
+}
+50% {
+    width: 100%;
+}
+100% {
+    width: 60%;
+}
+}
+.tips-card-loading .meta[data-v-f3bf5228] {
+    width: 30px;
+    height: 42px;
+    position: absolute;
+    bottom: 20px;
+    background-color: transparent;
+}
+.tips-card-loading .meta.meta-1[data-v-f3bf5228] {
+      left: 30px;
+}
+.tips-card-loading .meta.meta-2[data-v-f3bf5228] {
+      left: 90px;
+}
+.tips-card-loading .meta.meta-3[data-v-f3bf5228] {
+      left: 150px;
+}
+.tips-card-loading .meta .count[data-v-f3bf5228], .tips-card-loading .meta .type[data-v-f3bf5228] {
+      position: absolute;
+}
+.tips-card-loading .meta .count[data-v-f3bf5228] {
+      left: -5px;
+      top: 6px;
+      height: 18px;
+      width: 40px;
+}
+.tips-card-loading .meta .type[data-v-f3bf5228] {
+      left: 1px;
+      bottom: 2px;
+      height: 13px;
+      width: 28px;
+}
+.tips-card-loading .button[data-v-f3bf5228] {
+    position: absolute;
+    bottom: 17px;
+    width: 90px;
+    height: 40px;
+    border-radius: 40px;
+}
+.tips-card-loading .message[data-v-f3bf5228] {
+    right: 120px;
+}
+.tips-card-loading .follow[data-v-f3bf5228] {
+    right: 17px;
+}
+.tips-card[data-v-f3bf5228] {
+  z-index: 10;
+}
+.tips-card .card-content[data-v-f3bf5228] {
+    padding: 20px 20px 0 20px;
+}
+.tips-card .card-content .summary[data-v-f3bf5228] {
+      padding: 8px 0 20px 90px;
+      min-height: 92px;
+      position: relative;
+}
+.tips-card .card-content .summary .avatar[data-v-f3bf5228] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 72px;
+        height: 72px;
+        cursor: pointer;
+        border-radius: 50%;
+        background-color: #EAEAEA;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+.tips-card .card-content .summary .name[data-v-f3bf5228] {
+        height: 26px;
+        margin-right: 3px;
+        margin-bottom: 8px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+}
+.tips-card .card-content .summary .name .nickname[data-v-f3bf5228] {
+          color: #333333;
+          font-size: 19px;
+          font-weight: bold;
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+             text-overflow: ellipsis;
+          white-space: nowrap;
+          cursor: pointer;
+}
+.tips-card .card-content .summary .name .sex[data-v-f3bf5228], .tips-card .card-content .summary .name .badge[data-v-f3bf5228] {
+          -webkit-flex-shrink: 0;
+              -ms-flex-negative: 0;
+                  flex-shrink: 0;
+          display: inline-block;
+}
+.tips-card .card-content .summary .name .sex[data-v-f3bf5228] {
+          font-size: 19px;
+          width: 19px;
+          margin: 0 4px;
+}
+.tips-card .card-content .summary .intro[data-v-f3bf5228] {
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        margin-bottom: 12px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #333333;
+}
+.tips-card .card-content .summary .intro.block[data-v-f3bf5228] {
+          color: #999999;
+}
+.tips-card .card-content .summary .list .item[data-v-f3bf5228] {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 13px;
+        color: #999999;
+        cursor: pointer;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+        white-space: nowrap;
+}
+.tips-card .card-content .summary .list .item i[data-v-f3bf5228] {
+          margin-right: 2px;
+}
+.tips-card .card-footer[data-v-f3bf5228] {
+    border-top: 1px solid #F0F0F0;
+    padding: 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    overflow: hidden;
+    _zoom: 1;
+}
+.tips-card .card-footer .profile[data-v-f3bf5228] {
+      width: 198px;
+      overflow: hidden;
+      _zoom: 1;
+      float: left;
+}
+.tips-card .card-footer .profile div[data-v-f3bf5228] {
+        float: left;
+        width: 60px;
+        height: 44px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+}
+.tips-card .card-footer .profile div span[data-v-f3bf5228] {
+          display: block;
+          width: 100%;
+          text-align: center;
+}
+.tips-card .card-footer .profile div .type[data-v-f3bf5228] {
+          font-size: 13px;
+          color: #999999;
+}
+.tips-card .card-footer .profile div .count[data-v-f3bf5228] {
+          font-size: 18px;
+          color: #333333;
+}
+.tips-card .card-footer .social[data-v-f3bf5228] {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-box-pack: end;
+      -webkit-justify-content: flex-end;
+          -ms-flex-pack: end;
+              justify-content: flex-end;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      float: right;
+      overflow: hidden;
+      _zoom: 1;
+}
+.tips-card .card-footer .social .message[data-v-f3bf5228] {
+        border: 1px solid rgba(59, 194, 29, 0.7);
+        color: #42C02E;
+        margin: 0 10px 0 16px;
+        font-size: 15px;
+        padding: 8px 0;
+        width: 90px;
+        border-radius: 40px;
+        text-align: center;
+        cursor: pointer;
+        float: left;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+}
+.tips-card .card-footer .social .message[data-v-f3bf5228]:hover {
+          border: 1px solid #42C02E;
+          color: #42C02E;
+          background-color: rgba(59, 194, 29, 0.05);
+}
+.tips-card .card-footer .social .user-follow-button[data-v-f3bf5228] {
+        font-size: 15px;
+        padding: 8px 0;
+        width: 100px;
+}
+.arrow[data-v-f3bf5228] {
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  left: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+.arrow i[data-v-f3bf5228] {
+    position: absolute;
+    left: 50%;
+    margin: 0;
+    margin-left: -10px;
+    border-width: 10px;
+    border-color: transparent;
+    padding: 0;
+}
+.arrow em[data-v-f3bf5228] {
+    display: block;
+    position: absolute;
+    left: -9px;
+    border-width: 9px;
+    border-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+.arrow-type-top[data-v-f3bf5228] {
+  bottom: 1px;
+}
+.arrow-type-top i[data-v-f3bf5228] {
+    border-top-color: #d9d9d9;
+    border-style: solid dashed dashed;
+    top: 0;
+}
+.arrow-type-top em[data-v-f3bf5228] {
+    border-style: solid dashed dashed;
+    border-top-color: #ffffff;
+    top: -10px;
+}
+.arrow-type-bottom[data-v-f3bf5228] {
+  top: 1px;
+}
+.arrow-type-bottom i[data-v-f3bf5228] {
+    border-bottom-color: #d9d9d9;
+    border-style: dashed dashed solid;
+    top: -10px;
+}
+.arrow-type-bottom em[data-v-f3bf5228] {
+    border-style: dashed dashed solid;
+    border-bottom-color: #ffffff;
+    top: -8px;
+}
+.reader-night-mode .tips-card-loading[data-v-f3bf5228] {
+  background-color: #3F3F3F;
+  border-color: #2F2F2F;
+}
+.reader-night-mode .tips-card-loading .avatar[data-v-f3bf5228], .reader-night-mode .tips-card-loading .name[data-v-f3bf5228], .reader-night-mode .tips-card-loading .text[data-v-f3bf5228], .reader-night-mode .tips-card-loading .text-delay[data-v-f3bf5228], .reader-night-mode .tips-card-loading .count[data-v-f3bf5228], .reader-night-mode .tips-card-loading .type[data-v-f3bf5228], .reader-night-mode .tips-card-loading .button[data-v-f3bf5228] {
+    background-color: #545454;
+}
+.reader-night-mode .tips-card[data-v-f3bf5228] {
+  background-color: #3F3F3F;
+  border-color: #2F2F2F;
+}
+.reader-night-mode .tips-card .card-content .summary .name .nickname[data-v-f3bf5228] {
+    color: #C8C8C8;
+}
+.reader-night-mode .tips-card .card-content .summary .name .nickname[data-v-f3bf5228]:hover {
+      color: #ffffff;
+}
+.reader-night-mode .tips-card .card-content .summary .intro[data-v-f3bf5228] {
+    color: #C8C8C8;
+}
+.reader-night-mode .tips-card .card-footer[data-v-f3bf5228] {
+    border-top-color: #2F2F2F;
+}
+.reader-night-mode .tips-card .card-footer .profile div .count[data-v-f3bf5228] {
+      color: #C8C8C8;
+}
+.reader-night-mode .arrow.arrow-type-top em[data-v-f3bf5228] {
+  border-top-color: #3F3F3F;
+}
+.reader-night-mode .arrow.arrow-type-top i[data-v-f3bf5228] {
+  border-top-color: #2F2F2F;
+}
+.reader-night-mode .arrow.arrow-type-bottom em[data-v-f3bf5228] {
+  border-bottom-color: #3F3F3F;
+}
+.reader-night-mode .arrow.arrow-type-bottom i[data-v-f3bf5228] {
+  border-bottom-color: #2F2F2F;
+}
+</style><style type="text/css">
+.v-tooltip-container,
+.v-tooltip-content {
+  display: inline-block;
+}
+.v-tooltip-container {
+  position: relative;
+}
+.v-tooltip-container .v-tooltip-content {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+.v-tooltip-container .v-tooltip-wrap {
+    position: absolute;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-top {
+      bottom: 100%;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+              transform: translateX(-50%);
+      padding-bottom: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-bottom {
+      top: 100%;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+              transform: translateX(-50%);
+      padding-top: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-left {
+      top: 50%;
+      right: 100%;
+      -webkit-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+              transform: translateY(-50%);
+      padding-right: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-right {
+      top: 50%;
+      left: 100%;
+      -webkit-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+              transform: translateY(-50%);
+      padding-left: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-top-start {
+      bottom: 100%;
+      left: 0;
+      padding-bottom: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-top-end {
+      bottom: 100%;
+      right: 0;
+      padding-bottom: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-bottom-start {
+      top: 100%;
+      left: 0;
+      padding-top: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-bottom-end {
+      top: 100%;
+      right: 0;
+      padding-top: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-left-start {
+      top: 0;
+      right: 100%;
+      padding-right: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-left-end {
+      bottom: 0;
+      right: 100%;
+      padding-right: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-right-start {
+      top: 0;
+      left: 100%;
+      padding-left: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-right-end {
+      bottom: 0;
+      left: 100%;
+      padding-left: 10px;
+}
+</style></head>
+
+  <body lang="zh-CN" class="reader-black-font" style="">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="https://www.jianshu.com/"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/nav-logo-4c7bbafe27adc892f3046e6978459bac.png" alt="Nav logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="https://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="https://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" href="https://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="tab ">
+              <a href="https://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="tab ">
+              <a id="web-nav-app-download-btn" class="app-download-btn" href="https://www.jianshu.com/apps?utm_medium=desktop&amp;utm_source=navbar-apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="https://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" autocomplete="off" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <a target="_blank" href="https://www.jianshu.com/apps/download?utm_source=sbc" id="web-note-ad-fixed" style="left: 1211.5px; display: none;"><span class="close">×</span></a>
+  <div class="post">
+    <div class="article">
+        <h1 class="title">011.导入Eclipse的WEB的项目到Intellij[非MAVEN版]</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="https://www.jianshu.com/u/f89cad0c1a52">
+            <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/cda86170-b16a-4cd1-b68b-f24cc86bdc6a.jpg" alt="96">
+</a>          <div class="info">
+            <span class="name"><a href="https://www.jianshu.com/u/f89cad0c1a52">胖先森</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="最后编辑于 2017.12.05 03:27">2016.12.25 14:38*</span>
+              <span class="wordage">字数 2396</span>
+            <span class="views-count">阅读 764</span><span class="comments-count">评论 6</span><span class="likes-count">喜欢 11</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div data-note-content="" class="show-content">
+          <p>首先，来点干货就是如何把我们之前在Eclipse环境开发的项目，如何导入到Intellij IDE中，并且让其可以正常运行成功呢？我们举例的是祥云19期[白班]完成的精简版的RBAC项目，因为我已经有点厌倦了录制视频的的感觉，自己对着电脑录制的时候，很空洞，也感觉到了无趣，还是简单谢谢写写东西，让自己不再忘记，讨厌现在的感觉！<br>
+你可以把你之前随意的用Eclipse开发的项目进行测试，而胖先生在这里说明一下，我是把其复制到我Intellij IDE的文件夹下，只是做测试使用，下面我们选择打开项目，操作如下：</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 578px; max-height: 562px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 97.23%;"></div>
+<div class="image-view" data-width="578" data-height="562"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-bb5d8a445b8f1038.png" data-original-width="578" data-original-height="562" data-original-format="image/png" data-original-filesize="78305" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-bb5d8a445b8f1038.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 666px; max-height: 144px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 21.62%;"></div>
+<div class="image-view" data-width="666" data-height="144"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-ba0aa5860947281f.png" data-original-width="666" data-original-height="144" data-original-format="image/png" data-original-filesize="36126" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-ba0aa5860947281f.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<ul>
+<li>在 IntelliJ IDEA 下是支持直接打开 Eclipse 项目的，无需导入。</li>
+<li>箭头所示，选择项目的 .project 文件打开即可</li>
+</ul>
+<p>看看我们的界面，我来跟大家介绍一下，这个里面一定要小心哟！</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 534px; max-height: 542px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 101.49999999999999%;"></div>
+<div class="image-view" data-width="534" data-height="542"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-c98f8d757664e30e.png" data-original-width="534" data-original-height="542" data-original-format="image/png" data-original-filesize="42457" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-c98f8d757664e30e.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<ul>
+<li>如上图标注 1 所示，IntelliJ IDEA 能自动识别到可编译的 src 类目录，所以这里文件夹是蓝色的。</li>
+<li>如上图标注 2 所示，Java Web 项目 WebContent 是整个项目输出的根目录，所以这个区域也是非常重要的，只是无需配置。</li>
+<li>如上图标注 3 所示，bulid文件夹下的classes文件夹需要进行转移，因为我们之前发布之后该文件夹会放置到WEB-INF的classes的文件夹下，并且该文件夹是红色的，也就是被排除，但不影响容器去使用它。[如何改变class的目录呢？]</li>
+</ul>
+<blockquote>
+<p>如何改变class的目录呢？ 图解</p>
+</blockquote>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 548px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 58.050000000000004%;"></div>
+<div class="image-view" data-width="944" data-height="548"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-0b707bce28a7299b.png" data-original-width="944" data-original-height="548" data-original-format="image/png" data-original-filesize="111877" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-0b707bce28a7299b.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<p><strong>弹出窗口的设置如下</strong></p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 598px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 83.28999999999999%;"></div>
+<div class="image-view" data-width="718" data-height="598"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-22c32c9b52944cf0.png" data-original-width="718" data-original-height="598" data-original-format="image/png" data-original-filesize="111103" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-22c32c9b52944cf0.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<blockquote>
+<p>操作之后的效果如下:</p>
+</blockquote>
+<div class="image-package">
+<div class="image-container" style="max-width: 416px; max-height: 508px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 122.12%;"></div>
+<div class="image-view" data-width="416" data-height="508"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-56c53c0e0caaa84e.png" data-original-width="416" data-original-height="508" data-original-format="image/png" data-original-filesize="39552" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-56c53c0e0caaa84e.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<blockquote>
+<p>那么我们如何进行修改呢？</p>
+</blockquote>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 494px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 57.709999999999994%;"></div>
+<div class="image-view" data-width="856" data-height="494"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-32c553fc4d8935bf.png" data-original-width="856" data-original-height="494" data-original-format="image/png" data-original-filesize="99000" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-32c553fc4d8935bf.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">你以为完事了吗？NO!NO!NO!NO!NO!NO!</div>
+</div>
+<p>继续</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 372px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 41.33%;"></div>
+<div class="image-view" data-width="900" data-height="372"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-b0975143d1284aab.png" data-original-width="900" data-original-height="372" data-original-format="image/png" data-original-filesize="57666" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-b0975143d1284aab.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 674px; max-height: 136px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 20.18%;"></div>
+<div class="image-view" data-width="674" data-height="136"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-6cb18ed45d4399b3.png" data-original-width="674" data-original-height="136" data-original-format="image/png" data-original-filesize="11628" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-6cb18ed45d4399b3.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<blockquote>
+<p>番外篇:</p>
+</blockquote>
+<ul>
+<li>如上图红圈所示，我们可以根据对项目的任意目录进行这五种目录类型标注，这个知识点非常非常重要，必须会。
+<ul>
+<li>Sources 一般用于标注类似 src 这种可编译目录。有时候我们不单单项目的 src 目录要可编译，还有其他一些特别的目录也许我们也要作为可编译的目录，就需要对该目录进行此标注。只有 Sources 这种可编译目录才可以新建 Java 类和包，这一点需要牢记。</li>
+<li>Tests 一般用于标注可编译的单元测试目录。在规范的 maven 项目结构中，顶级目录是src，maven 的 src 我们是不会设置为 Sources 的，而是在其子目录 main 目录下的java 目录，我们会设置为 Sources。而单元测试的目录是 src - test - java，这里的java 目录我们就会设置为 Tests，表示该目录是作为可编译的单元测试目录。一般这个和后面几个我们都是在 maven 项目下进行配置的，但是我这里还是会先说说。从这一点我们也可以看出 IntelliJ IDEA 对 maven 项目的支持是比较彻底的。</li>
+<li>Resources 一般用于标注资源文件目录。在 maven 项目下，资源目录是单独划分出来的，其目录为：src - main -resources，这里的 resources 目录我们就会设置为Resources，表示该目录是作为资源目录。资源目录下的文件是会被编译到输出目录下的。</li>
+<li>Test Resources 一般用于标注单元测试的资源文件目录。在 maven 项目下，单元测试的资源目录是单独划分出来的，其目录为：src - test -resources，这里的 resources 目录我们就会设置为 Test Resources，表示该目录是作为单元测试的资源目录。资源目录下的文件是会被编译到输出目录下的。</li>
+<li>Excluded 一般用于标注排除目录。被排除的目录不会被 IntelliJ IDEA 创建索引，相当于被 IntelliJ IDEA 废弃，该目录下的代码文件是不具备代码检查和智能提示等常规代码功能。</li>
+<li>通过上面的介绍，我们知道对于非 maven 项目我们只要会设置 src 即可。</li>
+</ul>
+</li>
+<li>目录会在右侧有一个总的概括。其中 classes 虽然是 Excluded 目录，但是它有特殊性，可以不显示在这里。</li>
+<li>如果要去掉目录的标记含义，可以点击打叉按钮进行删除。</li>
+</ul>
+<p>你以为完事了吗？NO!NO!NO!NO!NO!NO!</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 604px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 58.08%;"></div>
+<div class="image-view" data-width="1040" data-height="604"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-68c5501bfe844cf2.png" data-original-width="1040" data-original-height="604" data-original-format="image/png" data-original-filesize="115736" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-68c5501bfe844cf2.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<blockquote>
+</blockquote>
+<ul>
+<li>如上图红圈所示，这里显示项目的所有依赖包，其中红色表示 IntelliJ IDEA 无法识别。IntelliJ IDEA 支持一个一个导入依赖包，也支持直接导入一个目录下的所有依赖包。上图的这种就是一个一个具体化的依赖包。除非你的项目各个依赖包有存在依赖顺序关系，不然不建议一个一个引入，这样比较麻烦。所胖先生这里会先把这些零散的依赖包全部去除掉，然后按目录来引入。</li>
+<li>如上图标注1所示，依赖包支持这五种操作。
+<ul>
+<li>加号，表示可以引入新依赖包。</li>
+<li>减号，表示可以去除对应的依赖包。</li>
+<li>向上箭头，表示依赖包可以向上移动位置。依赖包越上面的表示在项目加载的时候越是优先，所以对于同一个依赖包，不同版本，依赖顺序不同，结果可能也是很有会不同的。</li>
+<li>向下箭头，表示依赖包可以向下移动位置，原因同上。<br>
+笔，表示可以编辑依赖包的名称和路径。</li>
+</ul>
+</li>
+</ul>
+<p>开始引入拥有的Jar包，我们是引用整个lib目录，操作如下！【暂停这步】</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 218px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 26.08%;"></div>
+<div class="image-view" data-width="836" data-height="218"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-bb67f64bf9535a65.png" data-original-width="836" data-original-height="218" data-original-format="image/png" data-original-filesize="33828" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-bb67f64bf9535a65.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div><br>
+<p>如上图所示，引入依赖包支持 jar 包和目录。以及已经导入项目的 Libraries 中的依赖包。多 Module 的项目还可以依赖其他 Module。</p>
+
+<p>推荐的引用jar的方式，图解如下:</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 350px; max-height: 318px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 90.86%;"></div>
+<div class="image-view" data-width="350" data-height="318"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-ef9053cfc7ecbf46.png" data-original-width="350" data-original-height="318" data-original-format="image/png" data-original-filesize="35287" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-ef9053cfc7ecbf46.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 652px; max-height: 532px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 81.6%;"></div>
+<div class="image-view" data-width="652" data-height="532"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-6724e206e4d2b1bb.png" data-original-width="652" data-original-height="532" data-original-format="image/png" data-original-filesize="61334" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-6724e206e4d2b1bb.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 533px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 76.17%;"></div>
+<div class="image-view" data-width="1024" data-height="780"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-e4241aa680f0a165.png" data-original-width="1024" data-original-height="780" data-original-format="image/png" data-original-filesize="73740" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-e4241aa680f0a165.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<blockquote>
+<p>由于我们刚刚去掉了红圈中的所有依赖包，所以我们现在还需要导入依赖包。到导入之前我们先把项目的 lib 作为一个总的依赖包进行放置到项目 Libraries 中。就是把 lib 目录转换成一个依赖包。这样的好处是，当我们项目有新添加依赖包，我们只要放置在 lib 目录下即可自动被项目引入，原因就是因为我们这里引的是目录，而不是一个一个依赖包。</p>
+</blockquote>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 336px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 29.53%;"></div>
+<div class="image-view" data-width="1138" data-height="336"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-062ca5e47be70dba.png" data-original-width="1138" data-original-height="336" data-original-format="image/png" data-original-filesize="81767" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-062ca5e47be70dba.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption"></div>
+</div>
+<p>关于jar包的问题解决了！<br>
+你以为完事了吗？NO!NO!NO!NO!NO!NO!</p>
+<blockquote>
+</blockquote>
+<ul>
+<li>对于传统的 Java Web 项目，我们一般还需要指定配置 web.xml 位置。这个一般在 Facts 中进行配置。Facts 可以理解为用于配置项目的框架区，在这里管理项目使用的框架配置文件。这个是 IntelliJ IDEA 特有的一个配置点。</li>
+<li>除了 web.xml 一般我们要配置外，其他一些框架，即使我们不在这里配置也是不会影响项目的运行的，但是是有缺点的。比如我们项目中一般都是有 Spring 框架的，而 Spring 是有很多配置文件的，如果我们在这里进行了配置，那你会发现 IntelliJ IDEA 编辑区底部会多出现几个跟 Spring 项目的设置区，原因就是你告诉了 IntelliJ IDEA，你的项目使用了 Spring 框架，那 IntelliJ IDEA 就会出现其对应的配置功能给你。Hibernate 等其他框架道理一样。</li>
+</ul>
+<div class="image-package">
+<div class="image-container" style="max-width: 338px; max-height: 326px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 96.45%;"></div>
+<div class="image-view" data-width="338" data-height="326"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-7093b4bade5c8b0d.png" data-original-width="338" data-original-height="326" data-original-format="image/png" data-original-filesize="39050" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-7093b4bade5c8b0d.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 533px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 76.17%;"></div>
+<div class="image-view" data-width="1024" data-height="780"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-eb6b6b4135a5b4d4.png" data-original-width="1024" data-original-height="780" data-original-format="image/png" data-original-filesize="115379" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-eb6b6b4135a5b4d4.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 533px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 76.17%;"></div>
+<div class="image-view" data-width="1024" data-height="780"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-911580572026d5d0.png" data-original-width="1024" data-original-height="780" data-original-format="image/png" data-original-filesize="125681" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-911580572026d5d0.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<p>修改后的效果如下<br>
+你以为完事了吗？NO!NO!NO!NO!NO!NO!</p>
+<blockquote>
+</blockquote>
+<ul>
+<li>Artifacts 也是 IntelliJ IDEA 特有的一个概念，我们可以理解这里是配置项目最终输出结果的地方。比如 Java Web 项目我们一般必备一个配置就是要配置成一个 war 包展开的方式，这样容器才能运行该项目。就需要配置一个 war 包展开的输出结构。其结构是由于前面的几项配置决定，所以如果前面的 Module 配置没有多大问题，这里可以省去一些配置步骤。但是有些时候我们也是需要做一些修改，比如此项目的输出目录默认生成的是错误，我改为了项目中的 webRoot 目录。</li>
+<li>该 Artifacts 配置，等下在配置 Tomcat 的时候也会引用到，所以这里需要重点注意下。</li>
+</ul>
+<p>如何对Artifacts 进行配置呢？</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 550px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 78.64999999999999%;"></div>
+<div class="image-view" data-width="1040" data-height="818"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-a0b599772436a99b.png" data-original-width="1040" data-original-height="818" data-original-format="image/png" data-original-filesize="117048" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-a0b599772436a99b.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 582px; max-height: 292px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 50.17%;"></div>
+<div class="image-view" data-width="582" data-height="292"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-6627e34e0250a420.png" data-original-width="582" data-original-height="292" data-original-format="image/png" data-original-filesize="41734" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-6627e34e0250a420.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 533px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 76.17%;"></div>
+<div class="image-view" data-width="1024" data-height="780"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-6eae442b2d25098b.png" data-original-width="1024" data-original-height="780" data-original-format="image/png" data-original-filesize="61361" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-6eae442b2d25098b.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 290px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 28.27%;"></div>
+<div class="image-view" data-width="1026" data-height="290"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-eae4b9c0dda9b8f4.png" data-original-width="1026" data-original-height="290" data-original-format="image/png" data-original-filesize="49302" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-eae4b9c0dda9b8f4.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 440px; max-height: 532px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 120.91000000000001%;"></div>
+<div class="image-view" data-width="440" data-height="532"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-049281fde5c3d85d.png" data-original-width="440" data-original-height="532" data-original-format="image/png" data-original-filesize="57682" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-049281fde5c3d85d.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 694px; max-height: 244px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 35.160000000000004%;"></div>
+<div class="image-view" data-width="694" data-height="244"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-6ee703ee8ec3a775.png" data-original-width="694" data-original-height="244" data-original-format="image/png" data-original-filesize="29403" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-6ee703ee8ec3a775.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div><br>
+<p>改造完毕了！</p>
+
+<p>Tomcat的配置，图解操作，进入配置服务器配置界面！</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 246px; max-height: 64px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 26.02%;"></div>
+<div class="image-view" data-width="246" data-height="64"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-fb0676ee713d856f.png" data-original-width="246" data-original-height="64" data-original-format="image/png" data-original-filesize="5390" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-fb0676ee713d856f.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 451px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 64.47%;"></div>
+<div class="image-view" data-width="1092" data-height="704"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-341f9e6b55892f34.png" data-original-width="1092" data-original-height="704" data-original-format="image/png" data-original-filesize="136447" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-341f9e6b55892f34.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 440px; max-height: 532px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 120.91000000000001%;"></div>
+<div class="image-view" data-width="440" data-height="532"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-8464f97b1a7f5a9d.png" data-original-width="440" data-original-height="532" data-original-format="image/png" data-original-filesize="56704" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-8464f97b1a7f5a9d.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div><br>
+<p>这里没有什么好说的吧！！！！</p>
+
+<div class="image-package">
+<div class="image-container" style="max-width: 440px; max-height: 238px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 54.09%;"></div>
+<div class="image-view" data-width="440" data-height="238"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-26a6b666c019ca6f.png" data-original-width="440" data-original-height="238" data-original-format="image/png" data-original-filesize="33345" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-26a6b666c019ca6f.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 451px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 64.47%;"></div>
+<div class="image-view" data-width="1092" data-height="704"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-74f8e8a9a191c4be.png" data-original-width="1092" data-original-height="704" data-original-format="image/png" data-original-filesize="139255" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-74f8e8a9a191c4be.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div><br>
+<p>推荐的方式:</p>
+
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 451px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 64.47%;"></div>
+<div class="image-view" data-width="1092" data-height="704"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-97e4e99dc41a8e4e.png" data-original-width="1092" data-original-height="704" data-original-format="image/png" data-original-filesize="116185" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-97e4e99dc41a8e4e.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 451px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 64.47%;"></div>
+<div class="image-view" data-width="1092" data-height="704"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-d2a17dd25ed269c4.png" data-original-width="1092" data-original-height="704" data-original-format="image/png" data-original-filesize="113012" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-d2a17dd25ed269c4.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div><br>
+<p>还没有配置完毕，好麻烦！！！</p>
+
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 451px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 64.47%;"></div>
+<div class="image-view" data-width="1092" data-height="704"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-95d490ba59d179ad.png" data-original-width="1092" data-original-height="704" data-original-format="image/png" data-original-filesize="145632" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-95d490ba59d179ad.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 451px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 64.47%;"></div>
+<div class="image-view" data-width="1092" data-height="704"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-2ad25ce8eaa41e32.png" data-original-width="1092" data-original-height="704" data-original-format="image/png" data-original-filesize="144687" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-2ad25ce8eaa41e32.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 484px; max-height: 228px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 47.11%;"></div>
+<div class="image-view" data-width="484" data-height="228"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-7c91a5341d624d1c.png" data-original-width="484" data-original-height="228" data-original-format="image/png" data-original-filesize="17649" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-7c91a5341d624d1c.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 202px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 14.41%;"></div>
+<div class="image-view" data-width="1402" data-height="202"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-57dac5cf9517794b.png" data-original-width="1402" data-original-height="202" data-original-format="image/png" data-original-filesize="53695" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-57dac5cf9517794b.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 544px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 58.87%;"></div>
+<div class="image-view" data-width="924" data-height="544"><img data-original-src="//upload-images.jianshu.io/upload_images/3957912-2637b1fdf3648d30.png" data-original-width="924" data-original-height="544" data-original-format="image/png" data-original-filesize="241977" class="" src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/3957912-2637b1fdf3648d30.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">Paste_Image.png</div>
+</div>
+
+        </div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="https://www.jianshu.com/nb/8460885">
+            <i class="iconfont ic-search-notebook"></i>
+            <span>Intellij 入门使用</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
+          </div>
+          <div class="modal-wrap" data-report-note="">
+            <a id="report-modal">举报文章</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="https://www.jianshu.com/u/f89cad0c1a52">
+            <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/cda86170-b16a-4cd1-b68b-f24cc86bdc6a.jpg" alt="96">
+</a>          <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+          <a class="title" href="https://www.jianshu.com/u/f89cad0c1a52">胖先森</a>
+          
+        <p>写了 90432 字，被 265 人关注，获得了 432 个喜欢</p></div>
+          <div class="signature">静坐常思己过，闲谈莫论人非</div>
+      </div>
+
+      <div class="support-author"><p>你的打赏,是我努力的方向</p> <div class="btn btn-pay">赞赏支持</div> <!----> <!----> <!----></div>
+
+    <div class="meta-bottom">
+      <div class="like"><div class="btn like-group"><div class="btn-like"><a href="https://www.jianshu.com/sign_in?utm_source=desktop&amp;utm_medium=not-signed-in-like-button"><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a>11</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-action="weibo-share" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;&#39;, &#39;推荐 胖先森 的文章《011.导入Eclipse的WEB的项目到Intellij[非MAVEN版]》（ 分享自 @简书 ）&#39;,&#39;https://www.jianshu.com/p/1d28ff7d709c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/7927040/weibo/image_3538405abf04.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;https://www.jianshu.com/p/1d28ff7d709c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 胖先森 的文章《011.导入Eclipse的WEB的项目到Intellij[非MAVEN版]》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;https://www.jianshu.com/p/1d28ff7d709c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 胖先森 的文章《011.导入Eclipse的WEB的项目到Intellij[非MAVEN版]》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=https://www.jianshu.com/p/1d28ff7d709c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;https://www.jianshu.com/p/1d28ff7d709c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;https://www.jianshu.com/p/1d28ff7d709c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;011.导入Eclipse的WEB的项目到Intellij[非MAVEN版]&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+      <a id="web-note-ad-1" target="_blank" href="https://www.jianshu.com/apps/download?utm_source=nbc"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/web-note-ad-1-10f08e404d3887d2d45a4bc8f1831403.png" alt="Web note ad 1"></a>
+    <div><div id="comment-list" class="comment-list"><div><form class="new-comment"><a class="avatar"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/avatar_default-78d4d1f68984cd6d4379508dd94b4210.png"></a> <div class="sign-container"><a href="https://www.jianshu.com/sign_in?utm_source=desktop&amp;utm_medium=not-signed-in-comment-form" class="btn btn-sign">登录</a> <span>后发表评论</span></div></form> <!----></div> <div id="normal-comment-list" class="normal-comment-list"><div><div><div class="top-title"><span>6条评论</span> <a class="author-only">只看作者</a> <a class="close-btn" style="display: none;">关闭评论</a> <div class="pull-right"><a class="active">按喜欢排序</a><a class="">按时间正序</a><a class="">按时间倒序</a></div></div></div> <!----> <!----> <div class="comments-placeholder" style="display: none;"><div class="author"><div class="avatar"></div> <div class="info"><div class="name"></div> <div class="meta"></div></div></div> <div class="text"></div> <div class="text animation-delay"></div> <div class="tool-group"><i class="iconfont ic-zan-active"></i><div class="zan"></div> <i class="iconfont ic-list-comments"></i><div class="zan"></div></div></div> <div id="comment-9493725" class="comment"><div><div class="author"><div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;"><div class="v-tooltip-content"><a href="https://www.jianshu.com/u/8c411cb002cf" target="_blank" class="avatar"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/503e0d46-68b7-45ea-84ed-fab6ef97309f.jpg"></a>  </div> <!----></div> <div class="info"><a href="https://www.jianshu.com/u/8c411cb002cf" target="_blank" class="name">五个六个七个八个</a> <!----> <!----> <div class="meta"><span>2楼 · 2017.03.28 22:51</span></div></div></div> <div class="comment-wrap"><p>老师你还研究intelliJ！！！<img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/+1.png" alt=":+1:" title=":+1:" class="emoji" width="20" height="20"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/+1.png" alt=":+1:" title=":+1:" class="emoji" width="20" height="20"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/+1.png" alt=":+1:" title=":+1:" class="emoji" width="20" height="20"></p> <div class="tool-group"><a class=""><i class="iconfont ic-zan"></i> <span>赞</span></a> <a class=""><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-9552232" class="sub-comment"><p><div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;"><div class="v-tooltip-content"><a href="https://www.jianshu.com/u/f89cad0c1a52" target="_blank">胖先森</a>：
+            </div> <!----></div> <span><a href="https://www.jianshu.com/users/8c411cb002cf" class="maleskine-author" target="_blank" data-user-slug="8c411cb002cf">@五个六个七个八个</a> 必须的</span></p> <div class="sub-tool-group"><span>2017.03.30 18:24</span> <a class=""><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-10567628" class="comment"><div><div class="author"><div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;"><div class="v-tooltip-content"><a href="https://www.jianshu.com/u/c680aba2d9b9" target="_blank" class="avatar"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/584b172d450a"></a>  </div> <!----></div> <div class="info"><a href="https://www.jianshu.com/u/c680aba2d9b9" target="_blank" class="name">瞧俺老孙的</a> <!----> <!----> <div class="meta"><span>3楼 · 2017.05.04 09:54</span></div></div></div> <div class="comment-wrap"><p>这个的确要赞一下，内容具有时效性，也比较详细。 </p> <div class="tool-group"><a class=""><i class="iconfont ic-zan"></i> <span>赞</span></a> <a class=""><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div><div id="comment-11204396" class="comment"><div><div class="author"><div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;"><div class="v-tooltip-content"><a href="https://www.jianshu.com/u/74cc931514fe" target="_blank" class="avatar"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/9-cceda3cf5072bcdd77e8ca4f21c40998.jpg"></a>  </div> <!----></div> <div class="info"><a href="https://www.jianshu.com/u/74cc931514fe" target="_blank" class="name">chenpipy</a> <!----> <!----> <div class="meta"><span>4楼 · 2017.05.25 16:20</span></div></div></div> <div class="comment-wrap"><p>能出一个maven版本的就好了</p> <div class="tool-group"><a class=""><i class="iconfont ic-zan"></i> <span>赞</span></a> <a class=""><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-11206042" class="sub-comment"><p><div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;"><div class="v-tooltip-content"><a href="https://www.jianshu.com/u/f89cad0c1a52" target="_blank">胖先森</a>：
+            </div> <!----></div> <span> <a href="https://www.jianshu.com/users/74cc931514fe" class="maleskine-author" target="_blank" data-user-slug="74cc931514fe">@chenpipy</a> 有啊</span></p> <div class="sub-tool-group"><span>2017.05.25 17:18</span> <a class=""><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-11427879" class="comment"><div><div class="author"><div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;"><div class="v-tooltip-content"><a href="https://www.jianshu.com/u/62c38ef9328e" target="_blank" class="avatar"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/8-a356878e44b45ab268a3b0bbaaadeeb7.jpg"></a>  </div> <!----></div> <div class="info"><a href="https://www.jianshu.com/u/62c38ef9328e" target="_blank" class="name">Clking</a> <!----> <!----> <div class="meta"><span>5楼 · 2017.06.02 11:01</span></div></div></div> <div class="comment-wrap"><p>首先感谢楼主写的文章，其次我这有个问题，就是按照当前步骤做后,还是报程序包不存在的错误</p> <div class="tool-group"><a class=""><i class="iconfont ic-zan"></i> <span>赞</span></a> <a class=""><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div></div></div> <!----> <div><!----></div></div></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部" style="display: none;"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39;&gt;
+                &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;&#39;, &#39;推荐 胖先森 的文章《011.导入Eclipse的WEB的项目到Intellij[非MAVEN版]》（ 分享自 @简书 ）&#39;,&#39;https://www.jianshu.com/p/1d28ff7d709c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;https://www.jianshu.com/p/1d28ff7d709c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 胖先森 的文章《011.导入Eclipse的WEB的项目到Intellij[非MAVEN版]》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;https://www.jianshu.com/p/1d28ff7d709c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 胖先森 的文章《011.导入Eclipse的WEB的项目到Intellij[非MAVEN版]》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=https://www.jianshu.com/p/1d28ff7d709c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;https://www.jianshu.com/p/1d28ff7d709c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;https://www.jianshu.com/p/1d28ff7d709c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;011.导入Eclipse的WEB的项目到Intellij[非MAVEN版]&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li> <!----></ul></div>
+</div>
+<div class="note-bottom">
+  <div><div class="main"><div class="title">被以下专题收入，发现更多相似内容</div> <!----> <div class="include-collection"><!----> <a href="https://www.jianshu.com/c/NEt52a?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/computer_guy.jpg"><div class="name">程序员</div></a><a href="https://www.jianshu.com/c/04cb7410c597?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/android.graphics.Bitmap_2e3e36e9.jpeg"><div class="name">Java学习笔记</div></a><a href="https://www.jianshu.com/c/bDHhpK?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/首页投稿.png"><div class="name">首页投稿</div></a><a href="https://www.jianshu.com/c/5773576daaa8?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/6-130122153923351_副本.jpg"><div class="name">Java</div></a> <!----></div></div> <!----> <!----></div>
+  <div data-vcomp="recommended-notes" data-note-id="7927040"></div>
+  <!-- 相关文章 -->
+  <div class="seo-recommended-notes">
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="https://www.jianshu.com/p/5ad013eb5364?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">Android - 收藏集 - 掘金</a>
+          <p class="description">用两张图告诉你，为什么你的 App 会卡顿? - Android - 掘金Cover 有什么料？ 从这篇文章中你能获得这些料： 知道setContentView()之后发生了什么？ ... Android 获取 View 宽高的常用正确方式，避免为零 - 掘金相信有很多朋友...</p>
+          <a class="author" target="_blank" href="https://www.jianshu.com/u/5fc9b6410f4f?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/6220dd63-bf1a-40a8-8ccc-e364a5c90f13.png" alt="48">
+            </div>
+            <span class="name">掘金官方</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="https://www.jianshu.com/p/dad51f6c9c4d?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">Android - 收藏集  </a>
+          <p class="description">用两张图告诉你，为什么你的 App 会卡顿? - Android - 掘金 Cover 有什么料？ 从这篇文章中你能获得这些料： 知道setContentView()之后发生了什么？ ... Android 获取 View 宽高的常用正确方式，避免为零 - 掘金 相信有很多...</p>
+          <a class="author" target="_blank" href="https://www.jianshu.com/u/e946d18f163c?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/4-3397163ecdb3855a0a4139c34a695885.jpg" alt="48">
+            </div>
+            <span class="name">passiontim</span>
+</a>        </div>
+
+        <div class="note have-img">
+          <a class="cover" target="_blank" href="https://www.jianshu.com/p/46fd0faecac1?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/7328262-54f7992145380c10.png" alt="240">
+</a>          <a class="title" target="_blank" href="https://www.jianshu.com/p/46fd0faecac1?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">Spring Cloud</a>
+          <p class="description">Spring Cloud为开发人员提供了快速构建分布式系统中一些常见模式的工具（例如配置管理，服务发现，断路器，智能路由，微代理，控制总线）。分布式系统的协调导致了样板模式, 使用Spring Cloud开发人员可以快速地支持实现这些模式的服务和应用程序。他们将在任何分布式...</p>
+          <a class="author" target="_blank" href="https://www.jianshu.com/u/d90908cb0d85?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/2-9636b13945b9ccf345bc98d0d81074eb.jpg" alt="48">
+            </div>
+            <span class="name">卡卡罗2017</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="https://www.jianshu.com/p/67a0e41dfe05?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">Spring boot参考指南</a>
+          <p class="description">Spring Boot 参考指南 介绍 转载自:https://www.gitbook.com/book/qbgbook/spring-boot-reference-guide-zh/details带目录浏览地址:http://www.maoyupeng.com/sprin...</p>
+          <a class="author" target="_blank" href="https://www.jianshu.com/u/d3ea915e1e0f?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/9b5b9b6de8b7.jpg" alt="48">
+            </div>
+            <span class="name">毛宇鹏</span>
+</a>        </div>
+
+        <div class="note have-img">
+          <a class="cover" target="_blank" href="https://www.jianshu.com/p/1baf0e26afe0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/416556-e0ff5c4632d8f739.png" alt="240">
+</a>          <a class="title" target="_blank" href="https://www.jianshu.com/p/1baf0e26afe0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">Maven+Web+Spring项目搭建</a>
+          <p class="description">之前写了关于Maven入门介绍与Spring入门介绍两篇文章，本篇文章主要介绍使用IntelliJ IDEA搭建一个maven+web+spring的项目，在搭建的过程中会用到前面两篇文章中相关的知识点，如有不熟悉的，可以先看下前面两篇文章。 Maven+Web+Sprin...</p>
+          <a class="author" target="_blank" href="https://www.jianshu.com/u/f3467d045018?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/ba71ffcaac08" alt="48">
+            </div>
+            <span class="name">国士无双A</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="https://www.jianshu.com/p/cddca8bf081f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">《感恩日志》第【37】天</a>
+          <p class="description">1、明日必做三件事: 背一章《道德经》，写一章字帖；背一章四六级单词,练习可可英语的口语； 阅读《映雪湖畔的沉思》； 2、今日认知反思: 今天一天都在得到上学习了三个多小时，学习了演讲课程，听了心理学的课程等等。但对于专业课的学习总是逃避，逃避的方式是去学习其它与专业无关的...</p>
+          <a class="author" target="_blank" href="https://www.jianshu.com/u/8b5273482c15?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/75f8a413-7580-45f1-a789-9cf041d1c2ff" alt="48">
+            </div>
+            <span class="name">笋鹰</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="https://www.jianshu.com/p/241bb1d493e7?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">【荆】小海同志的呆萌二则（一） </a>
+          <p class="description">搬自2015-8-24 因为暂时只想起两则，所以这篇只是一，相信以后还会有的 （一） 小海同志：“今天发现公司附近有一家寿司店，东西又便宜又好吃哦！” 我：“那你以后就有的吃了” 小海同志：“是呀~可好吃啦~我明天给你带一份回来” 我：“好” 小海同志：“尤其沾着咖喱吃，特...</p>
+          <a class="author" target="_blank" href="https://www.jianshu.com/u/488a95a5bae7?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/864c6f2b35b9.jpg" alt="48">
+            </div>
+            <span class="name">荆棘海</span>
+</a>        </div>
+
+        <div class="note have-img">
+          <a class="cover" target="_blank" href="https://www.jianshu.com/p/e1b747d6d638?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/5204496-3ad32c73d83fa1b2.jpg" alt="240">
+</a>          <a class="title" target="_blank" href="https://www.jianshu.com/p/e1b747d6d638?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">爱情、努力与运气</a>
+          <p class="description">如果你想获得你想要的，那就让自己配得上它。爱情、财富、名誉都是靠努力获得的。 人总是会很容易的，爱上那些特别美、特别优秀的人，他们生来就是让人爱上的吧，但，不是谁都有机会。 所谓爱一个人，就是一方面觉得自己身上有很多毛病，觉得自己配不上对方，一方面又特别希望和他（她）在一起...</p>
+          <a class="author" target="_blank" href="https://www.jianshu.com/u/ec8d1a410668?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/41166b35-0612-4c6a-8f7d-8775ed1d1163" alt="48">
+            </div>
+            <span class="name">口木子的十月</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="https://www.jianshu.com/p/e7803911bda1?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">给自己的情书 NO.51</a>
+          <p class="description">越是清淡的女子，越是散发着芬芳。时间留的疤，终会成为美丽的印记，开在心里，酿成风景。 加油！</p>
+          <a class="author" target="_blank" href="https://www.jianshu.com/u/a9fa49723a0f?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/d93d5729-f4d8-4107-af8c-620437f54d4a.jpg" alt="48">
+            </div>
+            <span class="name">勿语悲伤</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="https://www.jianshu.com/p/0471f238afe5?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">希望佟丽娅离婚，因为我们对婚姻还有期望和底限</a>
+          <p class="description">娱乐圈是个宽容度超高的神奇地带。并且这奇高的宽容度，像经由空气传播的疫情一样，蔓延得又快速又广泛，还无药可医。沾毒的、假唱的、出轨的、抠图假演的，真是只有我们想不到的，没有他们做不到的。 最近两年真是男星出轨的密集爆发期。每一位男星的出轨，既是他们为男人谋福利的好时机，也是...</p>
+          <a class="author" target="_blank" href="https://www.jianshu.com/u/9d1cacc8f2f3?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/9fd96f448b6f.jpg" alt="48">
+            </div>
+            <span class="name">Miss张的茶馆</span>
+</a>        </div>
+  </div>
+</div>
+
+    <script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_martin_user":false,"is_author":false,"is_following_author":false,"is_liked_note":false,"follow_state":0,"uuid":"a3addf1d-08ea-4817-b2fb-f78ff7a45ef0"},"note":{"id":7927040,"slug":"1d28ff7d709c","user_id":3957912,"notebook_id":8460885,"commentable":true,"likes_count":11,"views_count":764,"public_wordage":2396,"comments_count":6,"total_rewards_count":0,"is_author":false,"author":{"nickname":"胖先森","total_wordage":90432,"followers_count":265,"total_likes_count":432}}}</script>
+    
+    <script src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/babel-polyfill-e27dec85eeb94683dfc7.js.下载" crossorigin="anonymous"></script>
+    <script src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/web-base-b3015ef0dd9886427378.js.下载" crossorigin="anonymous"></script>
+<script src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/web-de8b648cc379bdaf1972.js.下载" crossorigin="anonymous"></script>
+    
+    <script src="./导入Eclipse的WEB的项目到Intellij[非MAVEN版_files/entry-9e28293f23f7fa89210f.js.下载" crossorigin="anonymous"></script>
+    <script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----></body></html>

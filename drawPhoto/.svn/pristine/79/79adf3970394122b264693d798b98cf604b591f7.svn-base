@@ -1,0 +1,236 @@
+# coding=utf-8
+import cStringIO
+
+import io
+import matplotlib
+from PIL import Image
+
+matplotlib.use('Agg')
+import multiprocessing
+import time
+from multiprocessing import Process
+import matplotlib.ticker as tk
+import pandas as pd
+from matplotlib import pylab
+from matplotlib.font_manager import FontProperties
+from pylab import *
+from da.dataService.hqService import hqService
+from config import logger
+import threading
+import config
+from subprocess import *
+from threading import Thread
+import pickle
+
+font_set = FontProperties(fname=sys.path[0] + "/da/static/font/simsun.ttc", size=12)
+reload(sys)
+sys.setdefaultencoding('utf-8')
+counter_lock = threading.Lock()
+
+
+class fenshiPlan():
+    fig = object
+    secucode = ""
+    map = {}
+
+    def __init__(self, secucode):
+
+        self.secucode = secucode
+
+    def drawPlan(self, dataMap, i):
+
+        timeData, priceData, secName = dataMap['timeData'], dataMap['priceData'], dataMap['secName']
+        pylab.rcParams['figure.figsize'] = (5, 3.5)  # 设置绘图尺寸
+        self.fig = plt.figure(1)
+        ax = self.fig.add_subplot(i, 1, 1)
+        self.drawAxis(ax)
+        try:
+            price_max = np.max(priceData)
+            price_min = np.min(priceData)
+            num = round((price_max - price_min) / 6, 2)
+            if (num == 0):
+                num = price_max
+            ax.yaxis.set_major_locator(tk.MultipleLocator(num))  # y间隔
+        except Exception as er:
+            logger.error("暂无数据%s" % er.message)
+            # print "暂无数据%s" % er.message
+
+        ax.plot(timeData, priceData, color='#3177B4')
+        ax.plot_date(datestr2num(timeData), priceData, "", label='iops')
+
+        # 设置中文标题
+        self.fig.subplots_adjust(bottom=0.2)
+        plt.title(self.secucode + secName + "  " + dataMap['lastTime'], fontproperties=font_set)
+        ax.grid()
+
+    # 画坐标轴
+    def drawAxis(self, ax):
+        yearsFmt = DateFormatter('%H:%M')
+        ax.xaxis.set_major_formatter(yearsFmt)  # 设置时间显示格式
+        data = ['09:30', '10:00', '10:30', '11:00', '13:00', '13:30', '14:00', '14:30', '15:00']
+        ax.set_xticks(pd.date_range('09:30:00', '13:30:00', freq='30min'))  # 时间间隔
+        ax.set_xlim('09:30:00', '13:30:00')
+        ax.set_xticklabels(data)
+        ax.relim(True)
+
+    # 日行情图
+    def drawBar(self, dataMap):
+        timeData, amount = dataMap['timeData'], dataMap['amount']
+        ax = self.fig.add_subplot(2, 1, 2)
+        self.drawAxis(ax)
+        try:
+            ax.yaxis.set_major_locator(tk.MultipleLocator(np.max(np.array(amount) / np.array([100])) / 3))  # y间隔
+        except Exception as er:
+            logger.error("停市" + self.secucode)
+
+        ax.bar(timeData, np.array(amount) / np.array([100]), width=0.0004, color='#FF7F0E')
+        # 去除X轴刻度
+        ax.tick_params(axis='x', which='both', bottom='off', top='off', labelbottom='off')
+        ax.grid()
+
+    def show(self):
+        # ram = cStringIO.StringIO()
+        plt.savefig(sys.path[0] + '/da/static/img/' + self.secucode + ".png")
+
+        #
+        # 全局变量
+        # if counter_lock.acquire():
+        #     self.map[self.secucode] = plt
+        #     counter_lock.release()
+
+        # buffer = io.BytesIO()
+        # canvas = self.fig.canvas
+        # canvas.print_png(buffer)
+        # data = buffer.getvalue()
+        # buffer.close()
+
+
+        # with open(sys.path[0] +'/da/static/img/'+ self.secucode+'.png', mode='wb') as f:
+        #     f.write(data)
+        # self.fig.savefig(ram, format='raw', dpi=self.fig.dpi)
+        # plt.savefig(sys.path[0] +'/da/static/img/'+ self.secucode+'.png')
+        plt.clf()
+        # ram.close()
+        # plt.close()
+
+    def save_img2(self):
+        buffer = io.BytesIO()
+        # print map.keys()
+        fig = map[self.secucode]
+        canvas = fig.canvas
+        canvas.print_png(buffer)
+        data = buffer.getvalue()
+        buffer.close()
+        with open(sys.path[0] + '/da/static/img/' + self.secucode + '.png', mode='wb') as f:
+            f.write(data)
+        plt.clf()
+
+    def test(self):  # Use thread.start_new_thread() to create 2 new threads
+        thread1 = show(1, 1)
+        thread1.start()
+        thread1.stop()
+
+    def tar(self, name):
+        starttime = time.time()
+        starttime2 = time.time()
+        flag = starttime2
+        for i in range(0, 5):
+            f = fenshiPlan('sz000001')
+            f.test1(i, name)
+            if i != 0 and i % 100 == 0:
+                endtime2 = time.time()
+                print '第' + str(i) + '张时间:' + str(endtime2 - flag)
+                flag = endtime2
+        endtime = time.time()
+        print "总时间:" + str(endtime - starttime)
+
+
+# 根据股票代码画分时图
+def fs_secucode(secucode, i):
+    hq = hqService();
+    fenshi = fenshiPlan(secucode);
+    hqUrl = 'http://apihq.cnstock.com/apihq/min.do?code=' + secucode
+    data = hq.getUrlData(hqUrl)
+    if len(data) != 0:
+        # starttime = time.time()
+        dataMap = hq.envData(data)
+        fenshi.drawPlan(dataMap, i)
+        if (i == 2):
+            fenshi.drawBar(dataMap)
+        # endtime = time.time()
+        # logger.info("画图时间:" + str(endtime - starttime))
+        # starttimesave = time.time()
+        fenshi.show()
+        # print fenshiPlan.map.keys()
+        # 全局变量
+        # config.set_map_value(fenshiPlan.map)
+        # thread = Thread(target=fenshi.show)
+        # thread = fenshiPlan(secucode)
+        # thread.start()
+        # thread.stop()
+        # p = multiprocessing.Process(target=fenshi.show)
+        # p.start()
+        # p.join()
+        # endtimesave = time.time()
+        # logger.info("保存时间:" + str(endtimesave - starttimesave))
+        # print config.get_map_value().keys()
+
+
+def fs_dorang(start, end, data, d):
+    for i in range(start, end):
+        code = data[i]['code']
+        fs_secucode(code)
+        d[code] = fenshiPlan.map[code]
+
+
+# 画所有股票的分时图
+def fs_all(proNum):
+    hq = hqService();
+    hqUrl = 'http://php.cnstock.com/news_new/index.php/codelist/ag'
+    data = hq.getUrlData(hqUrl)
+
+    pro_list = []
+    count = len(data);
+    # count = 5;
+    mgr = multiprocessing.Manager()
+    d = mgr.dict()
+    for i in range(1, proNum + 1):
+        if i != proNum:
+
+            p = multiprocessing.Process(name="t" + str(i), target=fs_dorang,
+                                        args=(count / proNum * (i - 1), count / proNum * i, data, d))
+        else:
+            p = multiprocessing.Process(name="t" + str(i), target=fs_dorang,
+                                        args=(count / proNum * (i - 1), count, data, d))
+        pro_list.append(p)
+
+    for i in range(0, len(pro_list)):
+        pro_list[i].start()
+
+    for i in range(0, len(pro_list)):
+        pro_list[i].join()
+    config.set_map_value(d)
+
+
+def testXiaolv(num):
+    starttime = time.time()
+    fs_all(num)
+    endtime = time.time()
+    logger.info(str(num) + "个进程存储时间:" + str(endtime - starttime))
+    return str(endtime - starttime)
+
+
+def cpuNameTest():
+    timeList = []
+    for i in range(4, 16):
+        # i = 7
+        sub_time = testXiaolv(i)
+        timeMap = {}
+        timeMap['cpuNum'] = i
+        timeMap['time'] = sub_time
+        timeList.append(timeMap)
+    return timeList
+
+
+if __name__ == '__main__':
+    cpuNameTest()

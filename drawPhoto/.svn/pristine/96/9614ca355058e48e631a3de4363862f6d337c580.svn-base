@@ -1,0 +1,24 @@
+# coding=utf-8
+from da import create_flask_app
+import logging
+from config import logger
+app = create_flask_app('config')
+
+# from flask import Flask
+
+# app= Flask(__name__)
+
+if __name__ == '__main__':
+    # handler = logging.FileHandler('drawPhoto.log', encoding='UTF-8')
+    # handler.setLevel(logging.INFO)
+    # logging_format = logging.Formatter(
+    #     '%(asctime)s - %(levelname)s - %(filename)s - %(funcName)s - %(lineno)s - %(message)s')
+    # handler.setFormatter(logging_format)
+    # app.logger.addHandler(handler)
+    #
+    # ch = logging.StreamHandler()
+    # ch.setLevel(logging.DEBUG)
+    # ch.setFormatter(logging_format)
+    # app.logger.addHandler(ch)
+    logger.info('测试日志')
+    app.run(debug=True)

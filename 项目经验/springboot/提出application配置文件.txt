@@ -1,0 +1,22 @@
+/**
+项目启动路径
+StartApplication
+**/
+ public static void main(String[] args) {
+        String projectPath = new File("").getAbsolutePath();
+		//配置文件路径
+        String configPath = projectPath + "/config/application.properties";
+        Properties properties = new Properties();
+        InputStream inputStream = null;
+        try {
+            inputStream = new BufferedInputStream(new FileInputStream(configPath));
+            properties.load(inputStream);
+            SpringApplication app = new SpringApplication(StartApplication.class);
+            properties.load(inputStream);
+            app.setDefaultProperties(properties);
+            app.run(args);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }

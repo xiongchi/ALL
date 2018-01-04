@@ -1,0 +1,8 @@
+mvn install:install-file -Dfile=[jar∞¸¬∑æ∂] -DgroupId=[com.oracle.ojdbc] -DartifactId=[ojdbc] -Dversion=[1.0.0] -Dpackaging=jar
+
+pom.xml÷–“¿¿µ:
+<dependency>
+   <groupId>com.oracle.ojdbc</groupId>
+   <artifactId>ojdbc</artifactId>
+   <version>1.0.0</version>
+</dependency>

@@ -1,0 +1,165 @@
+# coding=utf-8
+
+import time
+
+import matplotlib
+from flask import send_file
+import da.photoService.fenshiPlan as plan
+import os
+import sys
+import time
+import threading
+
+from da.dataService.hqService import hqService
+from da.main import main
+from config import logger
+import ConfigParser
+import csv
+
+
+mutex = threading.Lock()
+cf = ConfigParser.ConfigParser()
+
+cf.read("data.conf")
+
+mutex.acquire()
+time_map = {}
+count_map = {}
+mutex.release()
+
+
+@main.route('/')
+def hello_world():
+    return 'Hello World!'
+
+
+@main.route('/fs_all')
+def get_all_fs():
+    plan.fs_all(8)
+    return 'success'
+
+
+@main.route('/fs_code/<code>')
+def get_fs_code(code):
+
+    now_time_str = time.strftime("%Y-%m-%d %H:%M", time.localtime(time.time()))
+    if code in time_map.keys() and time.strftime("%Y-%m-%d %H:%M", time.localtime(time_map[code])) == now_time_str:
+        return returnFile(code)
+    else:
+        try:
+            statinfo = os.stat(sys.path[0] + "/da/static/img/" + code + ".png")
+        except Exception as er:
+            logger.error(er)
+            return get_code_img(code)
+    statinfo_time_str = time.strftime("%Y-%m-%d %H:%M", time.localtime(statinfo.st_mtime))
+    if statinfo_time_str == now_time_str:
+        return returnFile(code)
+        # modify_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(statinfo.st_mtime))
+    return get_code_img(code)
+
+
+# 获取单张分时图
+def get_code_img(code):
+    index_code = cf.get("index", "code").split(",")
+    if (code in index_code):
+        logger.info("fs_code_%s指数分时图" % code)
+        plan.fs_secucode(code, 1)
+
+    else:
+        logger.info("fs_code_%s股票分时图" % code)
+        plan.fs_secucode(code, 1)
+
+    try:
+        time_map[code] = time.time()
+        return returnFile(code)
+    except Exception as er:
+        logger.error(er)
+        time_map.pop(code)
+        count_map.pop(code)
+        return "请输入正确的编号"
+
+#返回图片
+def returnFile(code):
+    if code not in count_map.keys():
+        count_map[code] = 1
+    else:
+        count_map[code] += 1
+    return send_file(sys.path[0] + '/da/static/img/' + code + ".png", mimetype='image/png',
+                     cache_timeout=0)
+
+
+@main.route('/test')
+def get_test():
+    logger.info('测试进程')
+    return str(plan.cpuNameTest())
+
+
+
+#记录访问每只股票访问次数
+def get_count_map():
+    hq = hqService()
+    hqUrl = 'http://php.cnstock.com/news_new/index.php/codelist/ag'
+    data = hq.getUrlData(hqUrl)
+    secu_list = []
+    for i in range(len(data)):
+        secu_list.append(data[i]['code'])
+    sub_secu_list = list(set(secu_list).difference(set(count_map.keys())))
+
+    now_time_str = time.strftime("%Y%m%d", time.localtime(time.time()))
+    dir_path = sys.path[0] + "/da/static/count/"+ now_time_str
+    isExists = os.path.exists(dir_path)
+    if not isExists:
+        os.makedirs(dir_path)
+    else:
+        pass
+
+    f_max = file(dir_path + '/bhy_code.csv','wb')
+    f_max_writer = csv.writer(f_max)
+    f_mid = file(dir_path + "/chy_code.csv", 'wb')
+    f_mid_writer = csv.writer(f_mid)
+    f_min = file(dir_path + "/hy_code.csv", 'wb')
+    f_min_writer = csv.writer(f_min)
+
+    max_map = []
+    mid_map = []
+    min_map = []
+
+    for key in count_map.keys():
+        if count_map[key] >= 10:
+            max_map.append([key,count_map[key]])
+        elif (count_map[key] <= 10 and count_map[key] >5):
+            mid_map.append([key,count_map[key]])
+        elif (count_map[key] < 5):
+            min_map.append([key,count_map[key]])
+        else:
+            pass
+
+    if len(sub_secu_list) > 0:
+        for i in range(len(sub_secu_list)):
+          min_map.append([sub_secu_list[i], 0])
+
+    f_max_writer.writerow(['secucode','count'])
+    f_mid_writer.writerow(['secucode','count'])
+    f_min_writer.writerow(['secucode','count'])
+    f_max_writer.writerows(max_map)
+    f_mid_writer.writerows(mid_map)
+    f_min_writer.writerows(min_map)
+    f_max.close()
+    f_mid.close()
+    f_min.close()
+
+# @main.route('/test2')
+# def get_test2():
+#     logger.info('测试数据')
+#     # plan.test_data()
+#     plan.cpuNameTest()
+#     print config.get_map_value().keys()
+#     # print type(config.get_map_value())
+#     r = pickle.dumps(config.get_map_value())
+#     # pickle.loads(r)
+#     a = {}
+#     a = pickle.loads(r)
+#     print a['sh600353']
+#     a['sh600353'].savefig(sys.path[0] + '/da/static/img/' + 'sh600353' + '.png')
+#     print type(a['sh600353'])
+#     return 'a'

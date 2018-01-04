@@ -1,0 +1,24 @@
+tail -200f   ~.log           读取文件的多少行
+cat          ~.log           打开整个log文件
+top                          查看cpu使用状态
+ps -ef|grep java(tomcat)     用于查询某个进程是否含义java 或 tomcat
+netstat -tunlp               显示tcp，udp的端口和进程等相关情况
+netstat -tunlp|grep 端口号   查看指定端口号的进程情况
+netstat -apn | grep 端口号   查找占用的程序
+kill  -9  [pid]              杀死当前pid线程
+
+
+vim
+Ctrl + e 向下滚动一行
+Ctrl + y 向上滚动一行
+Ctrl + d 向下滚动半屏
+Ctrl + u 向上滚动半屏
+Ctrl + f 向下滚动一屏
+Ctrl + b 向上滚动一屏
+:wq 保存并退出
+ZZ 保存并退出
+:q! 强制退出并忽略所有更改
+:e! 放弃所有修改，并打开原来文件
+
+
+ 

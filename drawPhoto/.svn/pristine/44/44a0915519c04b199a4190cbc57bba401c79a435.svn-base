@@ -1,0 +1,440 @@
+# coding=utf-8
+
+import io
+import matplotlib
+
+from PIL import Image
+from da.utils.configutil import ConfigUtil
+
+matplotlib.use('Agg')
+import multiprocessing
+import time
+import matplotlib.ticker as tk
+import pandas as pd
+from matplotlib import pylab
+from matplotlib.font_manager import FontProperties
+from pylab import *
+from da.dataService.hqService import hqService
+from config import logger
+import threading
+import os
+from da.dataService.dpredis import RedisHelper
+font_img_ = matplotlib.font_manager.FontProperties(fname=sys.path[0] + "/da/static/font/verdana.ttf", size=13)
+font_img_title = matplotlib.font_manager.FontProperties(fname=sys.path[0] + "/da/static/font/MSYH.TTC", size=15)
+# font_set = FontProperties(fname=sys.path[0] + "/da/static/font/simsun.ttc", size=12)'#1F2D4A'
+reload(sys)
+sys.setdefaultencoding('utf-8')
+counter_lock = threading.Lock()
+
+
+class fenshiPlan():
+    fig = object
+    secucode = ""
+
+    def __init__(self, secucode):
+
+        self.secucode = secucode
+
+    def drawPlan(self, dataMap, i, epsorpng):
+
+        timeData, priceData, secName, ylastprice, lowprice, highprice = dataMap['timeData'], dataMap['priceData'], \
+                                                                        dataMap['secName'], \
+                                                                        dataMap['ylastprice'], dataMap['lowprice'], \
+                                                                        dataMap['highprice']
+        pylab.rcParams['figure.figsize'] = (5.5, 2.75)  # 设置绘图尺寸
+        self.fig = plt.figure(1, facecolor=(0.5, 0.5, 0.5))
+        ax = self.fig.add_subplot(i, 1, 1)
+
+        self.drawAxis(ax)
+
+        try:
+            if len(priceData) > 3 and priceData[-1] == 0:
+                priceData[-1] = priceData[-2]
+            # 9:25到9:30之间无数据的情况
+            if len(priceData) == 0:
+                # print  'dsadasdas'
+                price_max = ylastprice
+                price_min = ylastprice
+            else:
+                # highprice 分钟内最高价集合, lowprice分钟内最低价集合
+                price_max = np.max(highprice)
+                price_min = np.min(lowprice)
+                # 避免分钟最低价集合中 出现错误数据0的情况
+                if price_min == 0 and price_max != 0:
+                    # 取出现价的最低价
+                    price_min = np.min(priceData)
+            sub_max = abs(price_max - ylastprice)
+            sub_min = abs(price_min - ylastprice)
+
+            # 取出较大的价格波动
+            if sub_max > sub_min:
+                sub_avg = sub_max
+            else:
+                sub_avg = sub_min
+            # +0.01 强制进一 避免最小刻度大于现价最低价
+            num = sub_avg / 2
+            # 停牌 y轴最大刻度为昨收 * 0.1
+            if price_max == 0 and price_min == 0:
+                num = (ylastprice * 0.1) / 2
+            # 变动太小情况  股价非常低的处理
+            if num <= 0.01:
+                num = 0.01
+            locator_up = num * 2
+            locator_bottom = num
+            # 股票波动非常小的情况的处理
+            # 右y坐标百分比刻度值
+            bottom_per = float('{:.2f}'.format(locator_bottom / ylastprice * 100))
+            up_per = float('{:.2f}'.format(locator_up / ylastprice * 100))
+            # 左y坐标刻度值
+            if bottom_per < 0.1:
+                bottom_per = 0.1
+                up_per = bottom_per*2
+                locator_bottom = ylastprice * bottom_per*0.01
+                locator_up = ylastprice * up_per*0.01
+            if bottom_per == up_per:
+                up_per=bottom_per*2
+            # 设置y轴数值
+            y_data = [ylastprice - locator_up,
+                      ylastprice - locator_bottom,
+                      ylastprice,
+                      ylastprice + locator_bottom,
+                      ylastprice + locator_up]
+            ax.set_yticks(y_data)
+            # 解决跌停折线和x轴重合
+            y_l = ylastprice - locator_up
+            if y_l <= 0:
+                y_l = 0
+            # 设置y轴数值范围
+            ax.set_ylim(y_l - num / 40, ylastprice + locator_up)
+            # 股价大于1000的处理
+            if ylastprice < 1000:
+                # 设置Y轴刻度
+                y_data_str = [self.formot_2(y_l),
+                              self.formot_2(ylastprice - locator_bottom),
+                              self.formot_2(ylastprice),
+                              self.formot_2(ylastprice + locator_bottom),
+                              self.formot_2(ylastprice + locator_up)]
+                # 手动画两条网格虚线
+                plt.axhline(ylastprice - locator_bottom, color="#D4D4D4", linewidth=0.5, alpha=0.8, linestyle="--")
+                plt.axhline(ylastprice + locator_bottom, color="#D4D4D4", linewidth=0.5, alpha=0.8, linestyle="--")
+            else:
+                y_data_str = ['{:.0f}'.format((ylastprice - locator_up)) + '  ',
+                              '{:.0f}'.format((ylastprice - locator_bottom)) + '  ',
+                              '{:.0f}'.format((ylastprice)) + '  ',
+                              '{:.0f}'.format((ylastprice + locator_bottom)) + '  ',
+                              '{:.0f}'.format((ylastprice + locator_up)) + '  ']
+                # 手动画两条网格虚线
+                plt.axhline(float('{:.0f}'.format((ylastprice - locator_bottom))), color="#D4D4D4", linewidth=0.5,
+                            alpha=0.8, linestyle="--")
+                plt.axhline(float('{:.0f}'.format((ylastprice + locator_bottom))), color="#D4D4D4", linewidth=0.5,
+                            alpha=0.8, linestyle="--")
+            ax.set_yticklabels(y_data_str, fontProperties=font_img_)
+            # 设置双Y坐标轴 右边y轴
+            # y_per_str = [self.formot_2(-up_per) + "%",
+            #              self.formot_2(-bottom_per) + "%",
+            #              self.formot_2(0) + "%",
+            #              self.formot_2(bottom_per) + "%",
+            #              self.formot_2(up_per) + "%"]
+            # ax1 = ax.twinx()
+            # #删除ax1 上下左的边框
+            # ax1.spines['top'].set_visible(False)
+            # ax1.spines['bottom'].set_visible(False)
+            # ax1.spines['left'].set_visible(False)
+            #x 轴不可见
+            # ax1.get_xaxis().set_visible(False)
+            #y 轴不可见
+            # ax1.get_yaxis().set_visible(False)
+            # ax1.set_ylim(y_l - num / 40, ylastprice + locator_up)
+            # ax1.set_yticks(y_data)
+            # ax1.set_yticklabels(y_per_str, fontProperties=font_img_)
+            #ax1.axis('off')
+
+        except Exception as er:
+            logger.error("暂无数据%s" % er.message)
+            logger.exception(er)
+        # 昨日线
+        plt.axhline(ylastprice, color="black", linewidth=0.5, alpha=0.8, linestyle="--")
+        # zorder越大 表示画线越晚 越在上面 739ab3
+        ax.plot_date(datestr2num(timeData), priceData, "", linewidth=1.0, color='#739ab3', zorder=9)
+        self.fig.subplots_adjust(bottom=0.2)
+        # 设置标题 如果是直接生成png ，含有证券简称
+        # eps转png 不含
+        if epsorpng == 'png':
+            plt.title(self.secucode + " " + secName + "                   " + dataMap['lastTime'],
+                      fontProperties=font_img_title, color='#696969')
+            # 1F2D4A
+        else:
+            plt.title(self.secucode + "                   " + dataMap['lastTime'], color='#696969', size=15)
+
+        # 网格线
+        ax.grid(linestyle='--', color="#E9E9E9", axis='x')
+        self.ax_color(ax)
+        # self.ax_color(ax1)
+
+
+        # y轴刻度位置
+        y_label_flag = 0
+        for tick in ax.yaxis.get_majorticklabels():
+            if y_label_flag == 4:
+                tick.set_verticalalignment('center')
+            else:
+                tick.set_verticalalignment('center')
+            y_label_flag += 1
+        # 设置边框颜色
+        ax.spines['bottom'].set_color('#D4D4D4')
+        ax.spines['left'].set_color('#D4D4D4')
+        ax.spines['top'].set_color('#D4D4D4')
+        ax.spines['right'].set_color('#D4D4D4')
+        # ax1.spines['right'].set_color('#D4D4D4')
+        plt.figtext(0.91, 0.85, self.formot_2(up_per) + "%", color='#FF0000', fontProperties=font_img_)
+        plt.figtext(0.91, 0.70, self.formot_2(bottom_per) + "%", color='#FF0000', fontProperties=font_img_)
+        plt.figtext(0.91, 0.53, "0.00%", color='#334FA0',  fontProperties=font_img_)
+        plt.figtext(0.91, 0.36, self.formot_2(-bottom_per) + "%", color='#1E8726',  fontProperties=font_img_)
+        plt.figtext(0.91, 0.20,self.formot_2(-up_per) + "%", color='#1E8726',  fontProperties=font_img_)
+    def ax_color(self, ax):
+        # 删除下左右边框
+        ax.tick_params(bottom=False, left=False, right=False, labelcolor='#000000')
+        label_flag = 0
+        # 设置Y轴刻度颜色
+        for label in ax.get_yticklabels():
+            if label_flag > 2:
+                label.set_color("#FF0000")
+            elif label_flag < 2:
+                label.set_color("#1E8726")
+            else:
+                label.set_color("#334FA0")
+            label_flag += 1
+    # 画坐标轴
+    def drawAxis(self, ax):
+        # x轴
+        yearsFmt = DateFormatter('%H:%M')
+        ax.xaxis.set_major_formatter(yearsFmt)  # 设置时间显示格式
+        data = ['09:30', '', '11:30/13:00', '', '15:00']
+        ax.set_xticks(pd.date_range('09:30:00', '13:30:00', freq='60min'))  # 时间间隔
+        ax.set_xlim('09:30:00', '13:30:00')
+        # 设置x轴
+        ax.set_xticklabels(data, fontProperties=font_img_)
+        ax.relim(True)
+        # 修改x轴标注位置
+        x_label_flag = 0
+        for tick in ax.xaxis.get_majorticklabels():
+            if x_label_flag == 0:
+                tick.set_horizontalalignment("left")
+            elif x_label_flag == 4:
+                tick.set_horizontalalignment("right")
+            x_label_flag += 1
+
+            # plt.xlabel("...", labelpad=110)
+
+    # 日行情图，分钟交易量 柱状图
+    def drawBar(self, dataMap):
+        timeData, amount = dataMap['timeData'], dataMap['amount']
+        ax = self.fig.add_subplot(2, 1, 2)
+        self.drawAxis(ax)
+        try:
+            ax.yaxis.set_major_locator(tk.MultipleLocator(np.max(np.array(amount) / np.array([100])) / 3))  # y间隔
+        except Exception as er:
+            logger.error("停市" + self.secucode)
+
+        ax.bar(timeData, np.array(amount) / np.array([100]), width=0.0004, color='#FF7F0E')
+        # 去除X轴刻度
+        ax.tick_params(axis='x', which='both', bottom='off', top='off', labelbottom='off')
+        ax.grid()
+
+    def round_overwrite(self, num):
+        return round(num * 100 / 100, 2)
+
+    # 保留两位
+    def formot_2(self, num):
+        return str('{:.3f}'.format(num))[:-1]
+
+    # 直接保存png
+    def show(self, type, flag=None):
+        if flag:
+            if type is None:
+                path = sys.path[0] + '/da/static/img/' + self.secucode + flag + ".png"
+            else:
+                path = sys.path[0] + '/da/static/img/' + type + "/" + self.secucode + flag + ".png"
+        else:
+            if type is None:
+                path = sys.path[0] + '/da/static/img/' + self.secucode + ".png"
+            else:
+                path = sys.path[0] + '/da/static/img/' + type + "/" + self.secucode + ".png"
+        plt.savefig(path, dpi=100, format='png', bbox_inches='tight')
+        if self.secucode == 'sz000001':
+            fsize = os.path.getsize(path)
+            img = Image.open(path)
+            logger.info(self.secucode + '图片大小尺寸为%s' % str(float(fsize / 1024)) + str(img.size))
+        plt.close()
+
+        # plt.clf()  # 清图。
+        # plt.cla()  # 清坐标轴。
+        # close()  # 关窗口
+
+    # eps转png
+    def save_eps(self, flag=None):
+        if flag:
+            path = sys.path[0] + '/da/static/eps/' + self.secucode + flag + ".eps"
+        else:
+            path = sys.path[0] + '/da/static/eps/' + self.secucode + ".eps"
+        plt.savefig(path)
+        if self.secucode == 'sz000001':
+            fsize = os.path.getsize(path)
+            logger.info(self.secucode + '图片大小尺寸为%s' % str(float(fsize / 1024)))
+        plt.close()
+
+
+# 根据股票代码画分时图 eps转png
+def fs_secucode(secucode, i, flag=True):
+    hq = hqService();
+    fenshi = fenshiPlan(secucode);
+    hqUrl = ConfigUtil.getconfig('https', 'apihq') + secucode
+    # hqUrl = 'http://apihq.cnstock.com/apihq/min.do?code=' + secucode
+    data = hq.getUrlData(hqUrl)
+    if len(data) != 0 and isinstance(data, list):
+        # starttime = time.time()
+        # 获取数据
+        dataMap = hq.envData(data)
+        # 画分时图
+        fenshi.drawPlan(dataMap, i, 'eps')
+        if i == 2:
+            # 画交易量
+            fenshi.drawBar(dataMap)
+        # 保存图片
+        if flag:
+            fenshi.save_eps()
+        else:
+            fenshi.save_eps('flag')
+
+        return True
+    else:
+        return False
+
+
+# 根据股票代码画分时图 直接生成png
+def fs_secucode_png(secucode, i, type=None, flag=True):
+    hq = hqService();
+    fenshi = fenshiPlan(secucode);
+    hqUrl = ConfigUtil.getconfig('https', 'apihq') + secucode
+    data = hq.getUrlData(hqUrl)
+    if data is not None and len(data) != 0 and isinstance(data, list):
+        # starttime = time.time()
+        # 获取数据
+        dataMap = hq.envData(data)
+        # 画分时图
+        fenshi.drawPlan(dataMap, i, 'png')
+        if i == 2:
+            # 画交易量
+            fenshi.drawBar(dataMap)
+        # 保存图片
+        if flag:
+            fenshi.show(type)
+        else:
+            fenshi.show(type, 'flag')
+        return True
+    else:
+        return False
+
+# 根据股票代码画分时图 直接生成png
+def fs_secucode_png_form_redis(secucode, i, type=None, flag=True):
+    hq = hqService();
+    fenshi = fenshiPlan(secucode)
+    sz_sh = szorsh(secucode)
+    # secucode = str(secucode)
+    if sz_sh is None :
+       return False
+    if sz_sh == 'sz' :
+        key = 'hq:min:sz:0:' +secucode[2:]
+    elif sz_sh =='sh':
+        key = 'hq:min:sh:0:' + secucode
+    redis =RedisHelper()
+    data = redis.get_list(key)
+    if data is not None and len(data) != 0 and isinstance(data, list):
+        # starttime = time.time()
+        # 获取数据
+        dataMap = hq.envData(data)
+        # 画分时图
+        fenshi.drawPlan(dataMap, i, 'png')
+        if i == 2:
+            # 画交易量
+            fenshi.drawBar(dataMap)
+        # 保存图片
+        if flag:
+            fenshi.show(type)
+        else:
+            fenshi.show(type, 'flag')
+        return True
+    else:
+        return False
+
+
+def szorsh(secucode):
+    if secucode is None:
+        return None
+    if secucode.startswith("sz") :
+        return 'sz'
+    elif secucode.startswith("sh"):
+        return 'sh'
+    # if secucode.startswith("6") or secucode.startswith("9"):
+    #     return "sh"
+    # elif secucode.startswith("0") or secucode.startswith("2") or secucode.startswith("3"):
+    #     return "sz"
+    # else:
+    #     return None
+
+
+def fs_dorang(start, end, data):
+    for i in range(start, end):
+        code = data[i]['code']
+        fs_secucode(code, 1)
+
+
+# 画所有股票的分时图
+def fs_all(proNum):
+    hq = hqService();
+    hqUrl = ConfigUtil.getconfig('https', 'ag')
+    data = hq.getUrlData(hqUrl)
+
+    pro_list = []
+    # count = len(data);
+    count = 5;
+    # 全局变量
+    for i in range(1, proNum + 1):
+        if i != proNum:
+            # 多进程
+            p = multiprocessing.Process(name="t" + str(i), target=fs_dorang,
+                                        args=(count / proNum * (i - 1), count / proNum * i, data))
+        else:
+            p = multiprocessing.Process(name="t" + str(i), target=fs_dorang,
+                                        args=(count / proNum * (i - 1), count, data))
+        pro_list.append(p)
+
+    for i in range(0, len(pro_list)):
+        pro_list[i].start()
+
+    for i in range(0, len(pro_list)):
+        pro_list[i].join()
+
+
+def testXiaolv(num):
+    starttime = time.time()
+    fs_all(num)
+    endtime = time.time()
+    logger.info(str(num) + "个进程存储时间:" + str(endtime - starttime))
+    return str(endtime - starttime)
+
+
+def cpuNameTest():
+    timeList = []
+    # for i in range(4, 16):
+    i = 1
+    sub_time = testXiaolv(i)
+    timeMap = {}
+    timeMap['cpuNum'] = i
+    timeMap['time'] = sub_time
+    timeList.append(timeMap)
+    return timeList
+
+
+if __name__ == '__main__':
+    cpuNameTest()
